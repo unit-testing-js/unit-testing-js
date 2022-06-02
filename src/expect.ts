@@ -1,5 +1,5 @@
-import { TestResult, TestResultType, TestTypeMap } from './type'
-import { tobe, tobeTruthy, tobeFalse } from './util'
+import { TestResult } from './type'
+import { mockFormat, tobe, runFunc, tobeTruthy, tobeFalse, mock } from './util'
 
 export const ResultCodeSuccess = 0
 export const ResultCodeError = 1
@@ -16,6 +16,10 @@ export interface Expect extends TestResult {
 	tobe?: (...args: any[]) => Expect;
 	tobeFalse?: (...args: any[]) => Expect;
 	tobeTruthy?: (...args: any[]) => Expect;
+	setParams?: (...args: any[]) => Expect;
+	runFunc?: (...args: any[]) => Expect;
+	mock?: (...args: any[]) => Expect;
+	mockFormat?: (...args: any[]) => Expect;
 	setType?: (testTypeKey?: [string, {
 		zh_CN: string,
 		en_US: string,
@@ -23,7 +27,7 @@ export interface Expect extends TestResult {
 	}]) => void;
 }
 
-export function expect(value: any): Expect {
+export function expect(value?: any): Expect {
 
 	const tmp: TestResult = {
 		type: '21',
@@ -60,6 +64,21 @@ export function expect(value: any): Expect {
 			...cmmConfig,
 			value: tobeTruthy
 		},
+		/** 运行函数 */
+		runFunc: {
+			...cmmConfig,
+			value: runFunc
+		},
+
+		mock: {
+			...cmmConfig,
+			value: mock
+		},
+
+		mockFormat: {
+			...cmmConfig,
+			value: mockFormat
+		},
 
 		// 设置状态
 		setType: {
@@ -68,8 +87,19 @@ export function expect(value: any): Expect {
 				this.type = testTypeKey[0]
 				this.message = testTypeKey[1].zh_CN
 			}
+		},
+
+		// 设置状态
+		setParams: {
+			...cmmConfig,
+			value: function (...args: any[]): Expect {
+				this.params = args
+				return this
+			}
 		}
 
 	})
+
+
 	return tmp
 }

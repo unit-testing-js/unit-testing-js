@@ -37,11 +37,13 @@ export interface TestResult {
 	type: TestResultType
 	name?: string
 	message: string
-	prototype?: any
-	parameter?: any[]
+	params?: any[]
 	originResults: any
 	expectedResults: any
 	actualResults: any
+	prototype?: (...args: any[]) => any
+	mockReg?: string | string[]
+	mockPath?: string | string[]
 	[key: string]: any
 }
 

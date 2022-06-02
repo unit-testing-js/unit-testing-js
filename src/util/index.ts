@@ -1,3 +1,5 @@
 export * from './tobeTruthy'
 export * from './tobe'
 export * from './tobeFalse'
+export * from './runFunc'
+export * from './mock'
