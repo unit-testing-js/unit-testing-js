@@ -1,40 +1,75 @@
-export type ResultCode = number
+import { TestResult, TestResultType, TestTypeMap } from './type'
+import { tobe, tobeTruthy, tobeFalse } from './util'
 
 export const ResultCodeSuccess = 0
 export const ResultCodeError = 1
 export const ResultCodeWarning = 2
 
-// const matchers = {
-// 	toBe: (value:any)=> 
-// }	
-
-// tobe : 期望值
-// toBe用于Object.is测试完全相等。如果要检查对象的值
-// toEqual递归检查对象或数组的每个字段。
-/* toBeNull仅匹配null
-toBeUndefined仅匹配undefined
-toBeDefined是相反的toBeUndefined
-toBeTruthy匹配if语句视为真实的任何内容
-toBeFalsy匹配任何被if语句视为假的东西 */
-
-
-export class expectClass {
-	value = undefined
-	originValue = undefined
-	constructor(value: any) {
-		this.value = value
-		this.originValue = value
-	}
-	mockValue(reg?: any) {
-		// console.log({ reg })
-		return reg
-	}
-	is(value:any){
-		return this.originValue  === value
-	}
+const cmmConfig = {
+	configurable: true,
+	writable: true,
+	enumerable: false,
 }
 
 
-export function expect(value: any) {
-	return new expectClass(value)
+export interface Expect extends TestResult {
+	tobe?: (...args: any[]) => Expect;
+	tobeFalse?: (...args: any[]) => Expect;
+	tobeTruthy?: (...args: any[]) => Expect;
+	setType?: (testTypeKey?: [string, {
+		zh_CN: string,
+		en_US: string,
+		[key: string]: string
+	}]) => void;
+}
+
+export function expect(value: any): Expect {
+
+	const tmp: TestResult = {
+		type: '21',
+		message: '',
+		prototype: undefined,
+		originResults: value,
+		expectedResults: undefined,
+		actualResults: value
+	}
+
+	switch (typeof value) {
+		case 'function':
+			tmp.prototype = value
+			tmp.originResults = undefined
+			tmp.actualResults = undefined
+			break;
+		default:
+			break;
+	}
+
+	Object.defineProperties(tmp, {
+		// tobe : 期望值
+		tobe: {
+			...cmmConfig,
+			value: tobe
+		},
+		// 匹配假值
+		tobeFalse: {
+			...cmmConfig,
+			value: tobeFalse
+		},
+		// 匹配真值
+		tobeTruthy: {
+			...cmmConfig,
+			value: tobeTruthy
+		},
+
+		// 设置状态
+		setType: {
+			...cmmConfig,
+			value: function (testTypeKey) {
+				this.type = testTypeKey[0]
+				this.message = testTypeKey[1].zh_CN
+			}
+		}
+
+	})
+	return tmp
 }
