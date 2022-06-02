@@ -1,0 +1,11 @@
+test/
+src/
+push.bat
+*.md
+.gitignore
+jest.config.ts
+tsconfig.json
+.*
+rollup.*
+node_modules/
+lib/
