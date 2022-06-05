@@ -1,7 +1,7 @@
-import { TestTypeMap } from "../type"
+import { TestTypeMap } from "../assets/type"
 
 export function isSpecifyValue(actualResults: any, args: any[]): boolean {
-	this.expectedResults = args
+	this.expect = args
 	if (args.includes(actualResults)) {
 		this.setType(TestTypeMap.ConformSpecValue)
 		return true

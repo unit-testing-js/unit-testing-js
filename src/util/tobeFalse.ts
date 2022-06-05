@@ -1,20 +1,16 @@
 import { isSpecifyValue } from '../check';
 import { Expect } from './../expect';
-import { TestResult, TestTypeMap } from './../type';
-/**
- * 
- * @param args 指定错值
- * @returns 
- */
+import { TestResult, TestTypeMap } from '../assets/type';
+
 export function tobeFalse(...args: any[]): Expect {
 
-	const { actualResults }: TestResult = this as TestResult
+	const { actual }: TestResult = this as TestResult
 
-	if(isSpecifyValue.bind(this)(actualResults, args)){
+	if(isSpecifyValue.bind(this)(actual, args)){
 		return this
 	}
 	
-	if(!actualResults){
+	if(!actual){
 		this.setType(TestTypeMap.Success)
 		return this
 	}

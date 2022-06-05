@@ -1,52 +1,31 @@
+import { isObject, isString } from 'rh-js-methods';
 import { logResult } from './result';
-import { ResultCodeError } from './expect';
-import { TestResult, TestTotal } from './type'
+import { TestResult, TestTotal } from './assets/type'
+import { toLang, Lang } from './assets/locales'
 
-export function test(name: string, ...resultlist: TestResult[]): TestTotal {
+type testConfig = string | {
+	name: string
+	lang?: Lang
+}
 
-	const total = resultlist.length || 0
-	const resultSuccess: TestResult[] = []
-	const resultError: TestResult[] = []
-	const resultWarning: TestResult[] = []
-
-	for (let i = 0; i < resultlist.length; i++) {
-		const { type }: TestResult = resultlist[i] || {}
-
-		if (resultlist[i] && !resultlist[i].name) {
-			resultlist[i].name = name + ':' + i
-		}
-
-		if (isNaN(Number(type))) {
-			resultError.push(resultlist[i])
-			continue;
-		}
-
-		if (/^0[0-9]{0,}$/.test(String(type))) {
-			resultSuccess.push(resultlist[i])
-			continue
-		}
-
-		if (/^1[0-9]{0,}$/.test(String(type))) {
-			resultError.push(resultlist[i])
-			continue
-		}
-
-		if (/^2[0-9]{0,}$/.test(String(type))) {
-			resultWarning.push(resultlist[i])
-			continue
-		}
-
-	}
+export function test(config: testConfig, ...resultlist: TestResult[]): TestTotal {
 
 	const res = {
-		name,
-		total,
-		resultSuccess,
-		resultError,
-		resultWarning,
+		name: '',
+		lang: 'zh_CN',
+		resultlist
+	} as TestTotal
+	
+	if (isString(config)) {
+		res.name = config.toString()
+	}
+	
+	if (isObject(config) && typeof config === 'object') {
+		res.name = config?.name || ''
+		res.lang = toLang(config?.lang)
 	}
 
-	logResult(res)
+	logResult.bind(this)(res)
 
 	return res
 }

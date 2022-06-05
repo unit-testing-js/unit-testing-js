@@ -1,4 +1,4 @@
-import { TestResult } from './../type';
+import { TestResult } from '../assets/type';
 import { Mock } from 'rh-mock'
 
 export function mock(...args: any[]): TestResult {
@@ -23,9 +23,9 @@ export function mock(...args: any[]): TestResult {
 
 export function mockFormat(...args: any[]): TestResult{
 
-	if(args.length){
+	// if(args.length){
 		
-	}
+	// }
 
 	return this
 }

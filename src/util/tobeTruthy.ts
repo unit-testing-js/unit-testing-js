@@ -1,18 +1,18 @@
 import { isSpecifyValue } from '../check';
-import { TestResult, TestTypeMap } from '../type';
+import { TestResult, TestTypeMap } from '../assets/type';
 
 export function tobeTruthy(...args: any[]): TestResult {
-	const { actualResults }: TestResult = this as TestResult
+	const { actual }: TestResult = this as TestResult
 
-	if (isSpecifyValue.bind(this)(actualResults, args)) {
+	if (isSpecifyValue.bind(this)(actual, args)) {
 		return this
 	}
 
-	if (!!actualResults) {
+	if (actual) {
 		this.setType(TestTypeMap.Success)
 		return this
 	}
-	
+
 	this.setType(TestTypeMap.noConformDefaultValue)
 
 	return this
