@@ -21,11 +21,11 @@ export function mock(...args: any[]): TestResult {
 	return this
 }
 
-export function mockFormat(...args: any[]): TestResult{
+export function mockFormat(...args: any[]): TestResult {
 
 	// if(args.length){
-		
-	// }
 
+	// }
+	console.log({ args })
 	return this
 }

@@ -4,5 +4,6 @@
  * @param callback 回调函数
  */
 export function describe(name: string, callback: () => void) {
-
+	console.log(name)
+	callback()
 }
