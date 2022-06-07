@@ -9,7 +9,6 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "npx rollup -c --extend rollup.config.ts",
-    "lint-staged": "lint-staged",
     "test": "ts-node-dev --respawn --transpile-only ./test/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only ./test/index.test.ts",
     "md": "ts-node-dev --respawn --transpile-only ./md.ts",
