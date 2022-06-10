@@ -98,7 +98,7 @@ export async function logResult(testTotal: TestTotal) {
 
 	}
 
-
+	console.log(`name: ${name}`)
 	log(Color.Blue)('Total Count: ' + resultlist.length || 0)
 	log(Color.Green)('Success Count: ' + resultSuccess.length)
 
