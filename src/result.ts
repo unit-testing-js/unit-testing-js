@@ -2,9 +2,9 @@ import { isFunction, type } from 'rh-js-methods'
 import { log, Color } from 'rh-color'
 import { TestResult, TestTotal, TestTypeMap } from './assets/type'
 import { messageMap } from './assets/locales'
+import { Mock } from 'rh-mock'
 
 export async function logResult(testTotal: TestTotal) {
-
 
 	const {
 		name,
@@ -24,7 +24,12 @@ export async function logResult(testTotal: TestTotal) {
 
 		if (isFunction(prototype) && prototype) {
 			try {
-				item.actual = await prototype(...params)
+				if (item.expectType === 'Mock') {
+					const mockParams = params.map(item => Mock(item))
+					item.actual = await prototype(...mockParams)
+				} else {
+					item.actual = await prototype(...params)
+				}
 				if (expect === item.actual) {
 					item.setType.bind(item)(TestTypeMap.Success)
 				}

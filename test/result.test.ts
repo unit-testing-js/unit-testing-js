@@ -15,8 +15,6 @@ async function asyncFn(v1: number, v2: number) {
 	return a + b
 }
 
-
-// test('开发测试',
 test({
 	name:'测试',
 	lang:'en_US'

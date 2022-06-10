@@ -3,6 +3,8 @@ import { Mock } from 'rh-mock'
 
 export function mock(...args: any[]): TestResult {
 
+	this.expectType = 'Mock'
+
 	if (!args || args.length < 1) return this
 
 	if (this.params === undefined) {
