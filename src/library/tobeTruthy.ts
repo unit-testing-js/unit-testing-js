@@ -1,16 +1,18 @@
 import { isSpecifyValue } from '../check';
-import { Expect } from './../expect';
 import { TestResult, TestTypeMap } from '../assets/type';
 
-export function tobeFalse(...args: any[]): Expect {
 
+// 有问题
+export function tobeTruthy(...args: any[]): TestResult {
 	const { actual }: TestResult = this as TestResult
 
-	if(isSpecifyValue.bind(this)(actual, args)){
+	this.expectType = 'Truthy'
+	
+	if (isSpecifyValue.bind(this)(actual, args)) {
 		return this
 	}
-	
-	if(!actual){
+
+	if (actual) {
 		this.setType(TestTypeMap.Success)
 		return this
 	}

@@ -1,5 +1,4 @@
-import { Expect } from './../expect';
-import { TestResult, TestTypeMap } from '../assets/type'
+import { TestResult, TestTypeMap, Expect } from '../assets/type'
 import { type } from 'rh-js-methods';
 
 export function tobeRegExp(reg: RegExp): TestResult {

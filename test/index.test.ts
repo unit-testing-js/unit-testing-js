@@ -1,4 +1,4 @@
 export * from '../src'
 
-// import './result.test'
-import './mock.test'
+import './result.test'
+// import './mock.test'

@@ -1,28 +1,17 @@
-import { TestResult, TestTypeMap } from './assets/type'
-import { mockFormat, tobe, tobeTruthy, tobeFalse, mock, tobeRegExp, tobeRegExps, tobes } from './util'
+import { TestResult, Expect } from './assets/type'
+import { mockFormat, tobe, tobeTruthy, tobeFalse, mock, tobeRegExp, tobeRegExps, tobes, setType, setParams } from './library'
 
 export const ResultCodeSuccess = 0
 export const ResultCodeError = 1
 export const ResultCodeWarning = 2
 
-const cmmConfig = {
-	configurable: true,
-	writable: true,
-	enumerable: false
-}
-
-
-export interface Expect extends TestResult {
-	tobe?: (...args: any[]) => Expect;
-	tobes?: (args: any[]) => Expect;
-	tobeFalse?: (...args: any[]) => Expect;
-	tobeTruthy?: (...args: any[]) => Expect;
-	tobeRegExp?: (reg:RegExp) => Expect;
-	tobeRegExps?: (regs: RegExp[]) => Expect;
-	setParams?: (...args: any[]) => Expect;
-	mock?: (...args: any[]) => Expect;
-	mockFormat?: (...args: any[]) => Expect;
-	setType?: (testTypeKey: TestTypeMap[string], message?: string ) => void;
+const cmmConfig = (fn: any) => {
+	return {
+		configurable: true,
+		writable: true,
+		enumerable: false,
+		value: fn
+	}
 }
 
 export function expect(value?: any): Expect {
@@ -48,66 +37,24 @@ export function expect(value?: any): Expect {
 
 	Object.defineProperties(tmp, {
 		// tobe : 期望值
-		tobe: {
-			...cmmConfig,
-			value: tobe
-		},
+		tobe: cmmConfig(tobe),
 		// tobe : 期望值
-		tobes: {
-			...cmmConfig,
-			value: tobes
-		},
+		tobes: cmmConfig(tobes),
 		// 匹配假值
-		tobeFalse: {
-			...cmmConfig,
-			value: tobeFalse
-		},
+		tobeFalse: cmmConfig(tobeFalse),
 		// 匹配真值
-		tobeTruthy: {
-			...cmmConfig,
-			value: tobeTruthy
-		},
-
+		tobeTruthy: cmmConfig(tobeTruthy),
 		// 匹配正则
-		tobeRegExp: {
-			...cmmConfig,
-			value: tobeRegExp
-		},
-
+		tobeRegExp: cmmConfig(tobeRegExp),
 		// 匹配正则数组(满足一个就为真)
-		tobeRegExps: {
-			...cmmConfig,
-			value: tobeRegExps
-		},
-		/** 运行函数 */
-
-		mock: {
-			...cmmConfig,
-			value: mock
-		},
-
-		mockFormat: {
-			...cmmConfig,
-			value: mockFormat
-		},
+		tobeRegExps: cmmConfig(tobeRegExps),
+		mock: cmmConfig(mock),
+		mockFormat: cmmConfig(mockFormat),
 
 		// 设置状态
-		setType: {
-			...cmmConfig,
-			value: function (testTypeKey: TestTypeMap[string], message?: string) {
-				this.type = testTypeKey.type
-				this.message = message || testTypeKey.message
-			}
-		},
-
+		setType: cmmConfig(setType) ,
 		// 设置状态
-		setParams: {
-			...cmmConfig,
-			value: function (...args: any[]): Expect {
-				this.params = args
-				return this
-			}
-		}
+		setParams: cmmConfig(setParams)
 
 	})
 

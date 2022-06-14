@@ -56,3 +56,18 @@ export interface TestTotal {
 	lang?: Lang
 	resultlist: TestResult[]
 }
+
+export interface Expect extends TestResult {
+	tobe?: (...args: any[]) => Expect;
+	tobes?: (args: any[]) => Expect;
+	tobeFalse?: (...args: any[]) => Expect;
+	tobeTruthy?: (...args: any[]) => Expect;
+	tobeRegExp?: (reg:RegExp) => Expect;
+	tobeRegExps?: (regs: RegExp[]) => Expect;
+	setParams?: (...args: any[]) => Expect;
+	mock?: (...args: any[]) => Expect;
+	mockFormat?: (...args: any[]) => Expect;
+	setType?: (testTypeKey: TestTypeMap[string], message?: string ) => void;
+}
+
+export type Control =  'expect' | 'tobe' | 'tobes' | 'tobeFalse' | 'tobeTruthy' | 'tobeRegExp' | 'tobeRegExps' | 'setParams' | 'mock' | 'mockFormat' | 'setType' | AnyFunction
