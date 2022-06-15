@@ -8,7 +8,7 @@ type testConfig = string | {
 	lang?: Lang
 }
 
-export function test(config: testConfig, ...results: TestResult[]): TestTotal {
+export async function test(config: testConfig, ...results: TestResult[]): Promise<TestTotal> {
 
 	const res = {
 		name: '',
@@ -28,4 +28,15 @@ export function test(config: testConfig, ...results: TestResult[]): TestTotal {
 	logResult.bind(this)(res)
 
 	return res
+}
+
+
+export function testArgs(
+	func: (...args: any[]) => TestResult,
+	argArr: { [key: string]: any }[] = []
+) {
+	return argArr.map((item = {}) => {
+		console.log(item)
+		// return func(...item)
+	})
 }
