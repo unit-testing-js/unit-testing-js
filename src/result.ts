@@ -67,7 +67,6 @@ export async function logResult(testTotal: TestTotal) {
 	handlelog({
 		name,
 		lang,
-		results,
 		errorArr,
 		successArr,
 		warningArr,

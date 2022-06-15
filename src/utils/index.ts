@@ -2,7 +2,7 @@ import { log, color, Styles } from 'rh-color'
 import { Message } from '../assets/locales'
 export * from './handleRun'
 
-export function handlelog({ name, lang = 'zh_CN', results, successArr, warningArr, errorArr }) {
+export function handlelog({ name, lang = 'zh_CN', successArr, warningArr, errorArr }) {
 
 
 	let tagColor: Styles = 'Cyan'
@@ -41,10 +41,10 @@ export function handlelog({ name, lang = 'zh_CN', results, successArr, warningAr
 
 	}
 
+	// color(`${results.length}`, 'White'), '/',
 	console.log(
 		color('\u27A4', tagColor,),
-		color(` ${name}`, tagColor, 'Bright'), '/',
-		color(`${results.length}`, 'White'), '/',
+		color(` ${name}  `, tagColor, 'Bright'),
 		color(`${successArr.length}`, 'Green'), '/',
 		color(`${warningArr.length}`, 'Yellow'), '/',
 		color(`${errorArr.length}`, 'Red')
