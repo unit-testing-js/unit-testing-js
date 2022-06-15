@@ -1,4 +1,4 @@
-import { TestResult, TestTypeMap, Expect } from '../assets/type'
+import { TestResult, Expect } from '../assets/type'
 import { type } from 'rh-js-methods';
 
 export function tobeRegExp(reg: RegExp): TestResult {
@@ -10,12 +10,12 @@ export function tobeRegExp(reg: RegExp): TestResult {
 
 	if (type(reg) === "RegExp") {
 		if (reg.test(actual)) {
-			this.setType(TestTypeMap.Success)
+			this.setType('Success')
 			return this
 		}
 	}
 
-	this.setType(TestTypeMap.noConformSpecValue)
+	this.setType('noConformSpecValue')
 
 	return this
 }
@@ -29,7 +29,7 @@ export function tobeRegExps(regs: RegExp[]): TestResult {
 
 	if (regs) {
 		if (regs.filter(reg => reg.test(actual)).length > 0) {
-			this.setType(TestTypeMap.Success)
+			this.setType('Success')
 			return this
 		}
 
@@ -37,7 +37,7 @@ export function tobeRegExps(regs: RegExp[]): TestResult {
 	}
 
 
-	this.setType(TestTypeMap.noConformSpecValue)
+	this.setType('noConformSpecValue')
 
 	return this
 }

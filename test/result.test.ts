@@ -1,4 +1,4 @@
-import { test, testFunc, expect, describe } from './index.test'
+import { test, expect } from './index.test'
 
 function pa(val: number) {
 	return new Promise((r: (v: number) => void) => {
@@ -13,20 +13,20 @@ async function asyncFn(v1: number, v2: number) {
 	return a + b
 }
 
-// describe('describe',
-// 	test('a',
-// 		expect((a,b)=>a+b).setParams(1,3).tobe(4)
-// 	)
-// )
-
-// testFunc('test func', [async (a, b) => a + b, 'setParams', 'tobe'],
-// 	[[1, 1], 1]
-// )
-
 test({
 	name: '测试',
 	// lang:'en_US'
 },
+	expect(async () => {
+		return new Promise(rs => {
+			setTimeout(() => {
+				rs(1)
+			}, 10)
+		})
+	}, {
+		name: 'test timeOut',
+		timeOut: 10
+	}).tobe(1),
 	expect(asyncFn).setParams(3, 4).tobe(9),
 	expect((c, d) => { }).setParams(1, 4).tobe(undefined),
 	expect(async (a, b) => a + b).setParams(1, 4).tobe(5),
@@ -62,3 +62,4 @@ test({
 	expect(undefined).tobeFalse(),
 	expect(undefined).tobeFalse(),
 )
+

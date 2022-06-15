@@ -1,5 +1,5 @@
 import { isSpecifyValue } from '../check';
-import { TestResult, TestTypeMap } from '../assets/type';
+import { TestResult } from '../assets/type';
 
 
 // 有问题
@@ -13,11 +13,11 @@ export function tobeTruthy(...args: any[]): TestResult {
 	}
 
 	if (actual) {
-		this.setType(TestTypeMap.Success)
+		this.setType('Success')
 		return this
 	}
 
-	this.setType(TestTypeMap.noConformDefaultValue)
+	this.setType('NoConformDefaultValue')
 
 	return this
 }

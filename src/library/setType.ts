@@ -1,6 +1,6 @@
-import { TestTypeMap } from "../assets/type"
+import { Message, MessageKey, Status } from "../assets/locales"
 
-export function setType(testTypeKey: TestTypeMap[string], message?: string) {
-	this.type = testTypeKey.type
-	this.message = message || testTypeKey.message
+export function setType(key: MessageKey, message?: string) {
+	this.type = Status[key] || '21'
+	this.message = message || Message[key]
 }

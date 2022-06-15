@@ -14,7 +14,9 @@ const cmmConfig = (fn: any) => {
 	}
 }
 
-export function expect(value?: any): Expect {
+export function expect(value?: any, rest?: {
+	[key in keyof TestResult]?: TestResult[keyof TestResult]
+}): Expect {
 
 	const tmp: TestResult = {
 		type: '21',
@@ -22,7 +24,10 @@ export function expect(value?: any): Expect {
 		prototype: undefined,
 		origin: value,
 		expect: undefined,
-		actual: value
+		actual: value,
+		timeOut: 2000,
+		runTime: 0,
+		...rest
 	}
 
 	switch (typeof value) {
@@ -52,7 +57,7 @@ export function expect(value?: any): Expect {
 		mockFormat: cmmConfig(mockFormat),
 
 		// 设置状态
-		setType: cmmConfig(setType) ,
+		setType: cmmConfig(setType),
 		// 设置状态
 		setParams: cmmConfig(setParams)
 

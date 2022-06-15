@@ -1,5 +1,5 @@
 import { isFalse, isSpecifyValue } from '../check';
-import { TestResult, TestTypeMap, Expect } from '../assets/type';
+import { TestResult, Expect } from '../assets/type';
 
 export function tobeFalse(...args: any[]): Expect {
 
@@ -12,11 +12,11 @@ export function tobeFalse(...args: any[]): Expect {
 	}
 
 	if (isFalse(actual)) {
-		this.setType(TestTypeMap.Success)
+		this.setType('Success')
 		return this
 	}
 
-	this.setType(TestTypeMap.noConformDefaultValue)
+	this.setType('NoConformDefaultValue')
 
 	return this
 }

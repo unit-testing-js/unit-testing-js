@@ -1,38 +1,38 @@
 import { log, color } from 'rh-color'
-import { messageMap } from '../assets/locales'
+import { Message } from '../assets/locales'
 export * from './handleRun'
 
-export function handlelog({ name, lang, resultlist, resultSuccess, resultWarning, resultError }) {
+export function handlelog({ name, lang='zh_CN', results, successArr, warningArr, errorArr }) {
 	console.log(
 		color(`Name: ${name}`, 'Cyan'),
-		color(` Total: ${resultlist.length}`, 'Blue'),
-		color(` Success: ${resultSuccess.length}`, 'Green'),
-		// color(' Warning: ' + resultWarning.length, 'Yellow'),
-		color(' Error: ' + resultError.length, 'Red')
+		color(`Total: ${results.length}`, 'Blue'),
+		color(`Success: ${successArr.length}`, 'Green'),
+		color('Warning: ' + warningArr.length, 'Yellow'),
+		color('Error: ' + errorArr.length, 'Red')
 	)
 
-	if (resultWarning.length) {
+	if (warningArr.length) {
 		console.log()
-		log('Yellow')(messageMap.msgWarning[lang])
+		log('Yellow')(Message['MsgWarning'][lang])
 
-		for (let i = 0; i < resultWarning.length; i++) {
+		for (let i = 0; i < warningArr.length; i++) {
 			// eslint-disable-next-line
-			const { name = '', message = '', type, ...rest } = resultWarning[i] || []
+			const { name = '', message = '', type, ...rest } = warningArr[i] || []
 
 			console.log(rest);
 
-			log('Red')(`${name}  ${message[lang] || message}`)
+			log('Yellow')(`${name}  ${message[lang] || message}`)
 		}
 	}
 
-	if (resultError.length > 0) {
+	if (errorArr.length > 0) {
 
 		console.log()
-		log('Red')(messageMap.msgError[lang], ':')
+		log('Red')(Message['MsgError'][lang], ':')
 
-		for (let i = 0; i < resultError.length; i++) {
+		for (let i = 0; i < errorArr.length; i++) {
 			// eslint-disable-next-line
-			const { name = '', message = '', type, ...rest } = resultError[i] || []
+			const { name = '', message = '', type, ...rest } = errorArr[i] || []
 
 			console.log(rest);
 
