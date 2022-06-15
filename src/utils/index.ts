@@ -1,18 +1,15 @@
-import { log, color } from 'rh-color'
+import { log, color, Styles } from 'rh-color'
 import { Message } from '../assets/locales'
 export * from './handleRun'
 
-export function handlelog({ name, lang='zh_CN', results, successArr, warningArr, errorArr }) {
-	console.log(
-		color(`Name: ${name}`, 'Cyan'),
-		color(`Total: ${results.length}`, 'Blue'),
-		color(`Success: ${successArr.length}`, 'Green'),
-		color('Warning: ' + warningArr.length, 'Yellow'),
-		color('Error: ' + errorArr.length, 'Red')
-	)
+export function handlelog({ name, lang = 'zh_CN', results, successArr, warningArr, errorArr }) {
+
+
+	let tagColor:Styles = 'Cyan'
+
 
 	if (warningArr.length) {
-		console.log()
+		tagColor = 'Yellow'
 		log('Yellow')(Message['MsgWarning'][lang])
 
 		for (let i = 0; i < warningArr.length; i++) {
@@ -23,11 +20,13 @@ export function handlelog({ name, lang='zh_CN', results, successArr, warningArr,
 
 			log('Yellow')(`${name}  ${message[lang] || message}`)
 		}
+		console.log()
+
 	}
 
 	if (errorArr.length > 0) {
-
-		console.log()
+		
+		tagColor = 'Red'
 		log('Red')(Message['MsgError'][lang], ':')
 
 		for (let i = 0; i < errorArr.length; i++) {
@@ -38,6 +37,22 @@ export function handlelog({ name, lang='zh_CN', results, successArr, warningArr,
 
 			log('Red')(`${name}  ${message[lang] || message}`)
 		}
+		console.log()
 
 	}
+
+	console.log(
+		color('\u27A4', tagColor),
+		color(` ${name}`, 'Cyan'), '|',
+		color(`${results.length}`, 'Blue'), '|',
+		color(`${successArr.length}`, 'Green'), '|',
+		color(`${warningArr.length}`, 'Yellow'), '|',
+		color(`${errorArr.length}`, 'Red'), '|'
+		// color(`Name: ${name}`, 'Cyan'),
+		// color(`Total: ${results.length}`, 'Blue'),
+		// color(`Success: ${successArr.length}`, 'Green'),
+		// color('Warning: ' + warningArr.length, 'Yellow'),
+		// color('Error: ' + errorArr.length, 'Red')
+	)
+
 }
