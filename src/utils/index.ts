@@ -5,7 +5,7 @@ export * from './handleRun'
 export function handlelog({ name, lang = 'zh_CN', results, successArr, warningArr, errorArr }) {
 
 
-	let tagColor:Styles = 'Cyan'
+	let tagColor: Styles = 'Cyan'
 
 
 	if (warningArr.length) {
@@ -15,7 +15,7 @@ export function handlelog({ name, lang = 'zh_CN', results, successArr, warningAr
 		for (let i = 0; i < warningArr.length; i++) {
 			// eslint-disable-next-line
 			const { name = '', message = '', type, ...rest } = warningArr[i] || []
-
+			console.log(type)
 			console.log(rest);
 
 			log('Yellow')(`${name}  ${message[lang] || message}`)
@@ -25,7 +25,7 @@ export function handlelog({ name, lang = 'zh_CN', results, successArr, warningAr
 	}
 
 	if (errorArr.length > 0) {
-		
+
 		tagColor = 'Red'
 		log('Red')(Message['MsgError'][lang], ':')
 
@@ -42,17 +42,12 @@ export function handlelog({ name, lang = 'zh_CN', results, successArr, warningAr
 	}
 
 	console.log(
-		color('\u27A4', tagColor),
-		color(` ${name}`, 'Cyan'), '|',
-		color(`${results.length}`, 'Blue'), '|',
-		color(`${successArr.length}`, 'Green'), '|',
-		color(`${warningArr.length}`, 'Yellow'), '|',
-		color(`${errorArr.length}`, 'Red'), '|'
-		// color(`Name: ${name}`, 'Cyan'),
-		// color(`Total: ${results.length}`, 'Blue'),
-		// color(`Success: ${successArr.length}`, 'Green'),
-		// color('Warning: ' + warningArr.length, 'Yellow'),
-		// color('Error: ' + errorArr.length, 'Red')
+		color('\u27A4', tagColor,),
+		color(` ${name}`, tagColor, 'Bright'), '/',
+		color(`${results.length}`, 'White'), '/',
+		color(`${successArr.length}`, 'Green'), '/',
+		color(`${warningArr.length}`, 'Yellow'), '/',
+		color(`${errorArr.length}`, 'Red')
 	)
 
 }

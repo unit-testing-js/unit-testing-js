@@ -37,21 +37,21 @@ export const Status = {
 	/** '02': 符合指定值*/
 	ConformSpecValue: '02',
 	/** '1': 错误*/
-	error: '1',
+	Error: '1',
 	/** '12': 不符合指定值*/
-	noConformSpecValue: '12',
+	NoConformSpecValue: '12',
 	/** '121': 不符合指定正则规则 */
-	noConformSpecRegExp: '121',
+	NoConformSpecRegExp: '121',
 	/** '13': 不符合默认值*/
-	noConformDefaultValue: '13',
+	NoConformDefaultValue: '13',
 	/** '14': 运行错误 */
 	RunningError: '14',
 	/** '2': 警告*/
-	warning: '2',
+	Warning: '2',
 	/** '21': 无效校验*/
 	InvalidVerification: '21',
 	/** '22': 没有校验*/
-	noVerification: '22',
+	NoVerification: '22',
 	/** '23': 超时*/
 	Timeout: '23',
 }

@@ -17,6 +17,7 @@ test({
 	name: '测试',
 	// lang:'en_US'
 },
+	expect(3).tobe(4),
 	expect(async () => {
 		return new Promise(rs => {
 			setTimeout(() => {
@@ -25,7 +26,7 @@ test({
 		})
 	}, {
 		name: 'test timeOut',
-		timeOut: 10
+		timeOut: 100
 	}).tobe(1),
 	expect(asyncFn).setParams(3, 4).tobe(9),
 	expect((c, d) => { }).setParams(1, 4).tobe(undefined),
