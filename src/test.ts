@@ -31,12 +31,12 @@ export async function test(config: testConfig, ...results: TestResult[]): Promis
 }
 
 
-export function testArgs(
-	func: (...args: any[]) => TestResult,
-	argArr: { [key: string]: any }[] = []
-) {
-	return argArr.map((item = {}) => {
-		console.log(item)
-		// return func(...item)
-	})
-}
+// export function testArgs(
+// 	func: (...args: any[]) => TestResult,
+// 	argArr: { [key: string]: any }[] = []
+// ) {
+// 	return argArr.map((item = {}) => {
+// 		console.log(item)
+// 		// return func(...item)
+// 	})
+// }

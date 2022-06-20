@@ -1,5 +1,5 @@
 import { Mock } from "rh-mock"
-import { isFunction, type } from "rh-js-methods"
+import { isFunction, type, equal } from "rh-js-methods"
 import { TestResult } from "../assets/type"
 import { runTime } from '../hook'
 import { isFalse, isSpecifyValue, isTruthy } from "../check"
@@ -32,7 +32,7 @@ export async function handleRun(item: TestResult): Promise<void> {
 
 	// 下面开始比较各种处理方式
 
-	if (expect === item.actual) {
+	if (equal(expect, item.actual)) {
 		item.setType.bind(item)('Success')
 	}
 

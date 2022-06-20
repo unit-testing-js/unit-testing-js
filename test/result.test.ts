@@ -17,7 +17,7 @@ test({
 	name: '测试',
 	// lang:'en_US'
 },
-	expect(3).tobe(4),
+	expect(() => [1]).tobe([1]),
 	expect(async () => {
 		return new Promise(rs => {
 			setTimeout(() => {

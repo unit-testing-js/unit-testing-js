@@ -1,5 +1,5 @@
 import { TestResult, Expect } from '../assets/type'
-import { type } from 'rh-js-methods';
+import { type, equal } from 'rh-js-methods';
 
 export function tobe(...args: any[]): TestResult {
 
@@ -12,7 +12,7 @@ export function tobe(...args: any[]): TestResult {
 
 	if (args.length === 1) {
 		this.expect = args[0]
-		if (JSON.stringify(actual) === JSON.stringify(args[0])) {
+		if (equal(actual, args[0])) {
 			this.setType('Success')
 			return this
 		}
@@ -20,7 +20,7 @@ export function tobe(...args: any[]): TestResult {
 
 	if (args.length > 1) {
 		this.expect = args
-		if (JSON.stringify(actual) === JSON.stringify(args)) {
+		if (equal(actual, args)) {
 			this.setType('Success')
 			return this
 		}

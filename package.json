@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "测试方法的包",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -38,7 +38,7 @@
     "node-notifier": "^8.0.2",
     "prettier": "^2.4.1",
     "rh-color": "^1.0.1",
-    "rh-js-methods": "^2.0.2",
+    "rh-js-methods": "^2.0.6",
     "rimraf": "^3.0.2",
     "rollup": "^2.66.1",
     "rollup-plugin-babel": "^4.4.0",
