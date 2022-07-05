@@ -21,8 +21,8 @@ export async function test(config: testConfig, ...results: TestResult[]): Promis
 	}
 
 	if (isObject(config) && typeof config === 'object') {
-		res.name = config?.name || ''
-		res.lang = toLang(config?.lang)
+		res.name = config.name || ''
+		res.lang = toLang(config.lang || 'zh_CN')
 	}
 
 	logResult.bind(this)(res)

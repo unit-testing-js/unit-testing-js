@@ -1,3 +1,5 @@
+import { performance } from 'perf_hooks'
+
 export interface RunTime {
 	result: any,
 	runTime: number

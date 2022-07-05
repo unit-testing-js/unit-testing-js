@@ -1,27 +1,17 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "DOM",
-      "ESNext"
-    ],
+    "lib": ["ESNext","DOM"],
     "declaration": true,
     "sourceMap": true,
     "removeComments": true,
     "noImplicitAny": false,
-    "strictNullChecks": true,
-    "alwaysStrict": true,
-    "moduleResolution": "node",
-    "experimentalDecorators":true,
+    "experimentalDecorators": true,
+    "moduleResolution": "NodeNext",
     "baseUrl": "./src",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
   "include": ["./src/**/*"],
-  "exclude": [
-    "**/*/__test__/*",
-    "**/*/__test__/",
-    "**/*/md.ts",
-    "**/*/*.md"
-  ]
+  "exclude": ["**/*/__test__/*", "**/*/__test__/", "**/*/md.ts", "**/*/*.md"]
 }

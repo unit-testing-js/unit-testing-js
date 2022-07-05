@@ -10,7 +10,7 @@ export async function handleRun(item: TestResult): Promise<void> {
 		expect,
 		prototype = undefined,
 		expectType
-	}: TestResult = item || {}
+	}: TestResult = item || {} as TestResult
 
 	// 计算实际结果
 	if (isFunction(prototype) && prototype) {
@@ -40,7 +40,7 @@ export async function handleRun(item: TestResult): Promise<void> {
 
 		if (expectType === 'False') {
 			if (
-				expect?.length > 0 && isSpecifyValue.bind(this)(item.actual, expect)
+				expect.length > 0 && isSpecifyValue.bind(this)(item.actual, expect)
 			) {
 				item.setType.bind(item)('Success')
 			} else {
@@ -56,7 +56,7 @@ export async function handleRun(item: TestResult): Promise<void> {
 
 		if (expectType === 'Truthy') {
 			if (
-				expect?.length > 0 && isSpecifyValue.bind(this)(item.actual, expect)
+				expect.length > 0 && isSpecifyValue.bind(this)(item.actual, expect)
 			) {
 				item.setType.bind(item)('Success')
 			}

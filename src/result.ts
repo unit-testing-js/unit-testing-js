@@ -11,7 +11,7 @@ export async function logResult(testTotal: TestTotal) {
 
 	for (let i = 0; i < results.length; i++) {
 
-		const item: TestResult = results[i] || {}
+		const item: TestResult = results[i] || {} as TestResult
 
 		await handleRun.bind(item)(item)
 
