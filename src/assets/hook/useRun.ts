@@ -1,6 +1,6 @@
 import { useRunTime } from './useRunTime';
 import { Func, CaseUnit } from "../type";
-import { Testlogger, isEqual } from '../index'
+import { Testlogger, isEquals } from '../utils'
 
 export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 
@@ -11,8 +11,7 @@ export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 
 	for (let i = 0; i < cases.length; i++) {
 		const unit = cases[i]
-		const { params, tobe, type = 'Normal', timeout = 2000 } = unit
-
+		const { params, tobe, tobes, type = 'Normal', timeout = 2000 } = unit
 
 		const { result, runTime = -1 } = await useRunTime(func, ...(Array.isArray(params) ? params : [params]))
 
@@ -36,7 +35,7 @@ export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 		/**
 		 * 成功
 		 */
-		if (isEqual(result, tobe, type)) {
+		if (isEquals(result, tobe, tobes, type)) {
 			SuccessQue.push(unit)
 			continue;
 		}
