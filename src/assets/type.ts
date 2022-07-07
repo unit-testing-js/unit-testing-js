@@ -5,7 +5,8 @@ export type CaseUnitParamType = 'Normal'
 
 export type CaseUnit = {
 	name?: string
-	params: any
+	param?: any
+	params?: any[]
 	tobe?: any
 	tobes?: any[]
 	type?: CaseUnitType
