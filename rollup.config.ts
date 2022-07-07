@@ -3,7 +3,7 @@ import rollupTypescript from 'rollup-plugin-typescript2'
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import { eslint } from 'rollup-plugin-eslint'
+// import { eslint } from 'rollup-plugin-eslint'
 import { DEFAULT_EXTENSIONS } from '@babel/core'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
@@ -21,7 +21,7 @@ const rollupConfig = {
     {
       file: path.join(paths.output, 'index.js'),
       format: 'cjs',
-      name: pkg.name
+      name: pkg.name,
     },
     // 输出 es 规范的代码
     {

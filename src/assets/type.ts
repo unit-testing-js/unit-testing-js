@@ -1,7 +1,33 @@
 import { AnyFunction } from 'rh-js-methods'
-import { Lang, MessageKey } from './locales'
+import { Lang } from './locales'
+
+export type Func = (...args: any[]) => (Promise<any> | any)
+
+export type CaseUnitType = 'Normal' | 'RegExp' | 'RegExps'
+export type CaseUnitParamType = 'Normal'
+
+export type CaseUnit = {
+	name?: string
+	params: any
+	tobe: any
+	type?: CaseUnitType
+	paramType?: CaseUnitParamType
+	/**
+	 * @title 超时时间
+	 * @default 2000
+	 */
+	timeout?: number | 'Infinite'
+	run?: {
+		actual: any,
+		runTime: number,
+		error?: string
+	}
+	[key: string]: any
+}
+
 
 export type TestResultType = '0' | '1' | '2' | string
+
 
 export interface TestResult {
 	type: TestResultType
@@ -33,17 +59,4 @@ export interface TestTotal {
 	name: string
 	lang?: Lang
 	results: TestResult[]
-}
-
-export interface Expect extends TestResult {
-	tobe?: (...args: any[]) => Expect;
-	tobes?: (args: any[]) => Expect;
-	tobeFalse?: (...args: any[]) => Expect;
-	tobeTruthy?: (...args: any[]) => Expect;
-	tobeRegExp?: (reg: RegExp) => Expect;
-	tobeRegExps?: (regs: RegExp[]) => Expect;
-	setParams?: (...args: any[]) => Expect;
-	mock?: (...args: any[]) => Expect;
-	mockFormat?: (...args: any[]) => Expect;
-	setType?: (key: MessageKey, message?: string) => void;
 }

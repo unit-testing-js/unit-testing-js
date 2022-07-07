@@ -1,13 +1,14 @@
-import { performance } from 'perf_hooks'
+// import { performance } from 'perf_hooks'
+import { Func } from '../type'
 
-export interface RunTime {
+export interface useRunTime {
 	result: any,
 	runTime: number
 }
-export async function runTime(
-	asyncFn: (...args: any[]) => (Promise<any> | any),
+export async function useRunTime(
+	asyncFn: Func,
 	...params: any[]
-): Promise<RunTime> {
+): Promise<useRunTime> {
 	if (!performance) {
 		return {
 			result: await asyncFn(...params),

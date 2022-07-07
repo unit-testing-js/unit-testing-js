@@ -1,5 +1,8 @@
-export * from './describe'
-export * from './expect'
-export * from './test'
-export * from './result'
-export * from './hook'
+
+import { Func, useRun, CaseUnit } from './assets'
+
+export async function test(name: string, func: Func, ...cases:CaseUnit[]) {
+
+	await useRun(name, func, ...cases)
+	
+}
