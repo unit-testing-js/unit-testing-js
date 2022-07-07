@@ -13,7 +13,8 @@ export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 		const unit = cases[i]
 		const { params, tobe, type = 'Normal', timeout = 2000 } = unit
 
-		const { result, runTime = -1 } = await useRunTime(func, ...params)
+
+		const { result, runTime = -1 } = await useRunTime(func, ...(Array.isArray(params) ? params : [params]))
 
 		if (runTime > 0) {
 			totalRunTime += runTime
