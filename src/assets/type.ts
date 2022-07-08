@@ -1,6 +1,6 @@
 export type Func = (...args: any[]) => (Promise<any> | any)
 
-export type CaseUnitType = 'Normal' | 'RegExp' | 'Match' | 'Type'
+export type CaseUnitType = 'Normal' | 'RegExp' | 'Match' | 'Matcher' | 'Type'
 export type CaseUnitParamType = 'Normal'
 
 export type CaseUnit = {

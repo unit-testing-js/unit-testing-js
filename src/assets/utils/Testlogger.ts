@@ -1,14 +1,28 @@
 import { color, Styles } from 'rh-color'
 import { CaseUnit } from '../index'
 
-function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles) {
+const icon = {
+	Success: '\u2714',
+	Wanning: '\u0021',
+	Error: '\u2718'
+}
+
+
+function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
 	list.forEach((unit: CaseUnit) => {
-		const { name = '' } = unit
-		const { actual, runTime = -1 } = unit.run
+		if (list.length === 0) return;
+		const { name = '', tobe } = unit
+		const { actual, runTime = -1, error } = unit.run
 		console.log(
-			color(`${name} `, tagColor),
+			' ',
+			color(icon[tagFlag], tagColor),
+			color(` ${name} `, tagColor),
+			'tobe:',
+			tobe,
+			'actual:',
 			actual,
-			color(`${runTime}`, tagColor),
+			color(` ${error}`, 'Red'),
+			color(`${runTime}`, 'Grey'),
 		)
 	})
 }
@@ -22,21 +36,25 @@ export function Testlogger(
 	totalRunTime: number
 ) {
 	let tagColor: Styles = 'Cyan'
+	let tagFlag = 'Success'
 	if (WarnningQue.length > 0) {
 		tagColor = 'Yellow'
-		logNotSuccess(WarnningQue, tagColor)
+		tagFlag = 'Warnning'
 	}
 	if (ErrorQue.length > 0) {
 		tagColor = 'Red'
-		logNotSuccess(ErrorQue, tagColor)
+		tagFlag = 'Error'
 	}
 
 	console.log(
-		color('\u27A4', tagColor),
+		color(icon[tagFlag], tagColor),
 		color(` ${name}: `, tagColor, 'Bright'),
 		color(`${SuccessQue.length} `, 'Green'),
 		color(`${WarnningQue.length} `, 'Yellow'),
 		color(`${ErrorQue.length}`, 'Red'),
 		color(`${totalRunTime || -1}`, 'Grey')
 	)
+	logNotSuccess(WarnningQue, tagColor, tagFlag)
+	logNotSuccess(ErrorQue, tagColor, tagFlag)
+
 }

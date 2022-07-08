@@ -8,7 +8,7 @@ export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolea
 		return true
 	}
 
-	if(type === 'Type' && _type(value) === _type(afterValue)){
+	if (type === 'Type' && _type(value) === _type(afterValue)) {
 		return true
 	}
 
@@ -31,6 +31,9 @@ export function isEquals(
 	type: CaseUnitType
 ): boolean {
 	if (afterValues && isArray(afterValues)) {
+		if (type === 'Matcher') {
+			return afterValues.filter(unit => isEqual(value, unit, 'Match')).length === afterValues.length
+		}
 		return afterValues.filter(unit => isEqual(value, unit, type)).length > 0
 	}
 
