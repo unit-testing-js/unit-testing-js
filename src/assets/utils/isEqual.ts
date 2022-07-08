@@ -16,7 +16,7 @@ export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolea
 		return true
 	}
 
-	if (type === 'RegExp') {
+	if (type === 'RegExp' && (afterValue as RegExp).test) {
 		return (afterValue as RegExp).test(value)
 	}
 

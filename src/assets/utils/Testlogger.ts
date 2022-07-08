@@ -1,6 +1,18 @@
 import { color, Styles } from 'rh-color'
 import { CaseUnit } from '../index'
 
+function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles) {
+	list.forEach((unit: CaseUnit) => {
+		const { name = '' } = unit
+		const { actual, runTime = -1 } = unit.run
+		console.log(
+			color(`${name} `, tagColor),
+			actual,
+			color(`${runTime}`, tagColor),
+		)
+	})
+}
+
 
 export function Testlogger(
 	name: string,
@@ -12,28 +24,11 @@ export function Testlogger(
 	let tagColor: Styles = 'Cyan'
 	if (WarnningQue.length > 0) {
 		tagColor = 'Yellow'
-		WarnningQue.forEach((unit: CaseUnit, index: number) => {
-			const { name: iname } = unit
-			const { actual, runTime } = unit.run
-			console.log(
-				color(`${name}:${iname || index} `, tagColor),
-				actual,
-				color(`${runTime}`, tagColor),
-			)
-		})
+		logNotSuccess(WarnningQue, tagColor)
 	}
 	if (ErrorQue.length > 0) {
 		tagColor = 'Red'
-		ErrorQue.forEach((unit: CaseUnit, index: number) => {
-			const { name: iname } = unit
-			const { actual, runTime, error } = unit.run
-			console.log(
-				color(`${name}:${iname || index} `, tagColor),
-				actual,
-				color(`${runTime}`, tagColor),
-				color(`${error}`, tagColor),
-			)
-		})
+		logNotSuccess(ErrorQue, tagColor)
 	}
 
 	console.log(
@@ -42,6 +37,6 @@ export function Testlogger(
 		color(`${SuccessQue.length} `, 'Green'),
 		color(`${WarnningQue.length} `, 'Yellow'),
 		color(`${ErrorQue.length}`, 'Red'),
-		color(`${totalRunTime || -1}`, 'Cyan')
+		color(`${totalRunTime || -1}`, 'Grey')
 	)
 }

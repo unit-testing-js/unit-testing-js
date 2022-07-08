@@ -1,7 +1,8 @@
-import { test } from './index.test'
+import { test, add } from './index.test'
 
-test('测试', (a, b) => a + b,
+test('测试', add,
+	{ param: 1, tobe: 1 },
 	{ params: [1, 3], tobe: 4 },
 	{ params: [4, 3], tobe: /7/, type: 'RegExp' },
-	{ params: [4, 5], tobe: [/7/, /9/], type: 'RegExps' },
+	{ params: [4, 5], tobes: [/7/, /9/], type: 'RegExp' },
 )
