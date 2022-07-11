@@ -4,6 +4,7 @@ export type CaseUnitType = 'Normal' | 'RegExp' | 'Match' | 'Matcher' | 'Type'
 export type CaseUnitParamType = 'Normal'
 
 export type CaseUnit = {
+	func?: any
 	name?: string
 	param?: any
 	params?: any[]

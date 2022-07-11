@@ -12,6 +12,7 @@ export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 	for (let i = 0; i < cases.length; i++) {
 		const unit = cases[i]
 		const {
+			func: funcUnit,
 			params = undefined, param, tobe, tobes,
 			type = 'Normal', timeout = 2000
 		} = unit
@@ -20,7 +21,7 @@ export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
 			unit.name = name + ':' + i
 		}
 		const { result, runTime = -1 } = await useRunTime(
-			func,
+			funcUnit || func,
 			...((Array.isArray(params)) ? params : [params || param])
 		)
 

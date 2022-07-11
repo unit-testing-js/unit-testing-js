@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "测试方法的包",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -22,6 +22,9 @@
     "typescript",
     "javascript"
   ],
+ "engines": {
+    "node": ">=16.14.1"
+  },
   "author": "ruihuag",
   "license": "ISC",
   "devDependencies": {
