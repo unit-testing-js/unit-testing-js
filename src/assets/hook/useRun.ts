@@ -2,7 +2,7 @@ import { useRunTime } from './useRunTime';
 import { Func, CaseUnit } from "../type";
 import { Testlogger, isEquals } from '../utils'
 
-export async function useRun(name: string, func: Func, ...cases: CaseUnit[]) {
+export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: CaseUnit<Param,Tobe>[]) {
 
 	const SuccessQue = []
 	const WarnningQue = []

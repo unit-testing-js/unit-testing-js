@@ -8,8 +8,8 @@ const icon = {
 }
 
 
-function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
-	list.forEach((unit: CaseUnit) => {
+function logNotSuccess<Param, Tobe>(list: CaseUnit<Param, Tobe>[] = [], tagColor: Styles, tagFlag) {
+	list.forEach((unit: CaseUnit<Param, Tobe>) => {
 		if (list.length === 0) return;
 		const { name = '', tobe } = unit
 		const { actual, runTime = -1, error } = unit.run
@@ -28,11 +28,11 @@ function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
 }
 
 
-export function Testlogger(
+export function Testlogger<Param, Tobe>(
 	name: string,
-	SuccessQue: CaseUnit[],
-	WarnningQue: CaseUnit[],
-	ErrorQue: CaseUnit[],
+	SuccessQue: CaseUnit<Param, Tobe>[],
+	WarnningQue: CaseUnit<Param, Tobe>[],
+	ErrorQue: CaseUnit<Param, Tobe>[],
 	totalRunTime: number
 ) {
 	let tagColor: Styles = 'Cyan'
@@ -54,7 +54,7 @@ export function Testlogger(
 		color(`${ErrorQue.length}`, 'Red'),
 		color(`${totalRunTime || -1}`, 'Grey')
 	)
-	logNotSuccess(WarnningQue, tagColor, tagFlag)
-	logNotSuccess(ErrorQue, tagColor, tagFlag)
+	logNotSuccess<Param, Tobe>(WarnningQue, tagColor, tagFlag)
+	logNotSuccess<Param, Tobe>(ErrorQue, tagColor, tagFlag)
 
 }

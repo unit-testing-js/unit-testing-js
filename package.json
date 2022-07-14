@@ -1,7 +1,7 @@
 {
   "name": "rh-test",
-  "version": "0.1.6",
-  "description": "测试方法的包",
+  "version": "0.1.7",
+  "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "unpkg": "/lib/",
