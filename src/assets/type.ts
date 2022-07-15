@@ -9,7 +9,7 @@ export type CaseUnit<Param, Tobe> = {
 	func?: any
 	name?: string
 	param?: Param
-	params?: Param[]
+	params?: Param | Param[]
 	tobe?: _Tobe<Tobe>
 	tobes?: _Tobe<Tobe>[]
 	type?: CaseUnitType
