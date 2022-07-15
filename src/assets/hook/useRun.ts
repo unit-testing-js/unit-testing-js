@@ -13,6 +13,7 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 		const unit = cases[i]
 		const {
 			func: funcUnit,
+			after, before,
 			params = undefined, param, tobe, tobes,
 			type = 'Normal', timeout = 2000
 		} = unit
@@ -20,10 +21,13 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 		if (!unit.name) {
 			unit.name = name + ':' + i
 		}
+		
+		before && (await before(unit))
 		const { result, runTime = -1 } = await useRunTime(
 			funcUnit || func,
 			...((Array.isArray(params)) ? params : [params || param])
 		)
+		after && (await after(unit))
 
 		if (runTime > 0) {
 			totalRunTime += runTime

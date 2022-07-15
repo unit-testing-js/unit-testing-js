@@ -5,6 +5,6 @@ export { CaseUnit, add, asyncAdd }
 type _TobeBase = boolean | string | number
 type TobeBase = _TobeBase | _TobeBase[]
 
-export async function test<Param = any, Tobe extends TobeBase = TobeBase>(name: string, func: Func, ...cases: CaseUnit<Param, Tobe>[]) {
+export async function test<Param = any, Tobe = TobeBase>(name: string, func: Func, ...cases: CaseUnit<Param, Tobe>[]) {
 	await useRun<Param, Tobe>(name, func, ...cases)
 }
