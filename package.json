@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -23,7 +23,7 @@
     "javascript"
   ],
  "engines": {
-    "node": ">=16.14.1"
+    "node": ">=16"
   },
   "author": "ruihuag",
   "license": "ISC",
