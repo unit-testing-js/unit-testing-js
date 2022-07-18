@@ -2,7 +2,7 @@ import { useRunTime } from './useRunTime';
 import { Func, CaseUnit } from "../type";
 import { Testlogger, isEquals } from '../utils'
 
-export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: CaseUnit<Param,Tobe>[]) {
+export async function useRun<Param, Tobe>(name: string, func: Func, ...cases: CaseUnit<Param, Tobe>[]) {
 
 	const SuccessQue = []
 	const WarnningQue = []
@@ -10,10 +10,21 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 	let totalRunTime = 0
 
 	for (let i = 0; i < cases.length; i++) {
-		const unit = cases[i]
+		let unit = cases[i]
+
+		if (unit.before) {
+			const res = await unit.before(unit)
+			if (res) {
+				unit = {
+					...unit,
+					...res
+				}
+			}
+		}
+
 		const {
 			func: funcUnit,
-			after, before,
+			after,
 			params = undefined, param, tobe, tobes,
 			type = 'Normal', timeout = 2000
 		} = unit
@@ -21,13 +32,10 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 		if (!unit.name) {
 			unit.name = name + ':' + i
 		}
-		
-		before && (await before(unit))
 		const { result, runTime = -1 } = await useRunTime(
 			funcUnit || func,
 			...((Array.isArray(params)) ? params : [params || param])
 		)
-		after && (await after(unit))
 
 		if (runTime > 0) {
 			totalRunTime += runTime
@@ -44,6 +52,7 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 		if (timeout !== 'Infinite' && runTime > timeout) {
 			unit.run.error = 'Time out'
 			WarnningQue.push(unit)
+			after && (await after(unit))
 			continue;
 		}
 
@@ -53,6 +62,7 @@ export async function useRun<Param,Tobe>(name: string, func: Func, ...cases: Cas
 		if (isEquals(result, tobe, tobes, type)) {
 			unit.run.error = 'Success'
 			SuccessQue.push(unit)
+			after && (await after(unit))
 			continue;
 		}
 

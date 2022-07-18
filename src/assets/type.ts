@@ -5,8 +5,9 @@ export type CaseUnitParamType = 'Normal'
 
 export type _Tobe<T> = string | RegExp | T
 
-type _callback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => void
-type _asyncCallback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => void
+type _callback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => CaseUnit<Param, Tobe>
+
+type _asyncCallback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => Promise<CaseUnit<Param, Tobe>>
 
 type callback<Param, Tobe> = _callback<Param, Tobe> | _asyncCallback<Param, Tobe>
 
