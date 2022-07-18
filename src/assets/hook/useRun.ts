@@ -50,7 +50,7 @@ export async function useRun<Param, Tobe>(
 		}
 
 		if (unit.beforeEqual) {
-			const res = await unit.before(unit)
+			const res = await unit.beforeEqual(unit)
 			if (res) {
 				unit = {
 					...unit,

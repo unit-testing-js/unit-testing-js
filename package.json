@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -16,6 +16,7 @@
     "start": "node ./dist/index.js",
     "prod": "npm run build && npm run start",
     "eslint": "eslint . --ext .ts --fix",
+    "pub:build": "npm run build && npm publish",
     "pub": "npm publish"
   },
   "keywords": [
