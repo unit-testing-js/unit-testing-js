@@ -18,6 +18,8 @@ export type CaseUnit<Param, Tobe> = {
 	params?: Param | Param[]
 	tobe?: _Tobe<Tobe>
 	tobes?: _Tobe<Tobe>[]
+	warningTobe?: _Tobe<Tobe>
+	warningTobes?: _Tobe<Tobe>[]
 	type?: CaseUnitType
 	paramType?: CaseUnitParamType
 	/**
@@ -27,7 +29,7 @@ export type CaseUnit<Param, Tobe> = {
 	/**
 	 * 判断结果是否正确前
 	 */
-	beforeEqual: callback<Param, Tobe>
+	beforeEqual?: callback<Param, Tobe>
 	/**
 	 * 打印结果前
 	 */

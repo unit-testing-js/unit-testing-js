@@ -59,10 +59,14 @@ export async function useRun<Param, Tobe>(
 			}
 		}
 
+
+		const { warningTobe, warningTobes} = unit
 		/**
 		 * 超时 warning
 		 */
-		if (timeout !== 'Infinite' && runTime > timeout) {
+		if (
+			(timeout !== 'Infinite' && runTime > timeout)
+			) {
 			unit.run.error = 'Time out'
 			WarnningQue.push(unit)
 			after && (await after(unit))
@@ -75,6 +79,16 @@ export async function useRun<Param, Tobe>(
 		if (isEquals(result, tobe, tobes, type)) {
 			unit.run.error = 'Success'
 			SuccessQue.push(unit)
+			after && (await after(unit))
+			continue;
+		}
+
+		/**
+		 * 警告
+		 */
+		if (isEquals(result, warningTobe, warningTobes, type)) {
+			unit.run.error = 'Warring'
+			WarnningQue.push(unit)
 			after && (await after(unit))
 			continue;
 		}

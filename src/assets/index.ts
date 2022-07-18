@@ -1,4 +1,3 @@
-export * from './locales'
 export * from './type'
 export * from './utils'
 export * from './hook'
