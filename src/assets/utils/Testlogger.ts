@@ -50,9 +50,9 @@ export function Testlogger<Param, Tobe>(
 		color(icon[tagFlag], tagColor),
 		color(` ${name}: `, tagColor, 'Bright'),
 		color(`${SuccessQue.length} `, 'Green'),
-		color(`${WarnningQue.length} `, 'Yellow'),
-		color(`${ErrorQue.length}`, 'Red'),
-		color(`${totalRunTime || -1}`, 'Grey')
+		WarnningQue.length ? color(`${WarnningQue.length} `, 'Yellow') : '',
+		ErrorQue.length ? color(`${ErrorQue.length}`, 'Red'): '',
+		tagFlag !== 'Success' ? color(`${totalRunTime || -1}`, 'Grey'): ''
 	)
 	logNotSuccess<Param, Tobe>(WarnningQue, tagColor, tagFlag)
 	logNotSuccess<Param, Tobe>(ErrorQue, tagColor, tagFlag)
