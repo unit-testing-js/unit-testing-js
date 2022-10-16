@@ -7,10 +7,10 @@
     "removeComments": false,
     "noImplicitAny": false,
     "experimentalDecorators": true,
-    "moduleResolution": "NodeNext",
     "baseUrl": "./src",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
   },
   "include": ["./src/**/*"],
   "exclude": ["**/*/__test__/*", "**/*/__test__/", "**/*/md.ts", "**/*/*.md"]

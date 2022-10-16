@@ -1,4 +1,4 @@
-import { logResult, test, expect } from './index.test'
+import { test } from './index.test'
 import { Mock } from 'rh-mock'
 
 const add = (a, b) => {
@@ -6,8 +6,6 @@ const add = (a, b) => {
 	return a + b
 }
 
-test({
-	name: '测试',
-},
-	expect(add).mock('@num', '@num').tobeRegExp(/^[0-9]*$/)
+test('测试', add,
+	{ params: Mock(['@num', '@num']), tobe: /^[0-9]*$/, type: 'Match' }
 )

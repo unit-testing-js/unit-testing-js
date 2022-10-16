@@ -5,7 +5,6 @@ export function toBe(val){
 	return val
 }
 
-
 /**
  * @description 测试使用方法
  */
