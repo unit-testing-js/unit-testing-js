@@ -2,7 +2,7 @@
 import { Func, useRun, CaseUnit, add, asyncAdd, toBe } from './assets'
 export { CaseUnit, add, asyncAdd, toBe }
 
-const RHTestCaseDictionary: Record<string, any[]> = {}
+export const RHTestCaseDictionary: Record<string, any[]> = {}
 
 function RHTestCaseDictionary_Add(name: string, cases: any[]) {
 	if (cases.length === 0 || name.length < 1) return;
