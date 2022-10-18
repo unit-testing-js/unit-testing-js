@@ -2,6 +2,18 @@
 import { Func, useRun, CaseUnit, add, asyncAdd, toBe } from './assets'
 export { CaseUnit, add, asyncAdd, toBe }
 
+const RHTestCaseDictionary: Record<string, any[]> = {}
+
+function RHTestCaseDictionary_Add(name: string, cases: any[]) {
+	if (cases.length === 0 || name.length < 1) return;
+	if (!RHTestCaseDictionary[name]) {
+		RHTestCaseDictionary[name] = []
+	}
+	cases.forEach(item => {
+		RHTestCaseDictionary[name].push(item)
+	})
+}
+
 type _TobeBase = boolean | string | number
 type TobeBase = _TobeBase | _TobeBase[]
 /**
@@ -14,8 +26,12 @@ type TobeBase = _TobeBase | _TobeBase[]
  * @param func Func 待测试的方法
  * @param ...cases:CaseUnit<Param,Tobe> 测试用用例
  */
-export async function test<Param = any, Tobe = TobeBase>(name: string, func: Func, ...cases: CaseUnit<Param, Tobe>[]) {
+export async function test<Param = any, Tobe = TobeBase>(
+	name: string, func: Func,
+	...cases: CaseUnit<Param, Tobe>[]
+) {
 	await useRun<Param, Tobe>(name, func, ...cases)
+	RHTestCaseDictionary_Add(name, cases)
 }
 
 /**
@@ -23,6 +39,10 @@ export async function test<Param = any, Tobe = TobeBase>(name: string, func: Fun
  * @param name string 用例名
  * @param ...cases:CaseUnit<Param,Tobe> 测试用用例
  */
-export async function equal<Param = any, Tobe = TobeBase>(name: string, ...cases: CaseUnit<Param, Tobe>[]) {
+export async function equal<Param = any, Tobe = TobeBase>(
+	name: string,
+	...cases: CaseUnit<Param, Tobe>[]
+) {
 	await useRun<Param, Tobe>(name, toBe, ...cases)
+	RHTestCaseDictionary_Add(name, cases)
 }
