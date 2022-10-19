@@ -1,5 +1,5 @@
-import { useRunTime } from './useRunTime';
-import { Func, CaseUnit } from "../type";
+import { useRunTime } from './useRunTime'
+import type { Func, CaseUnit } from "../type"
 import { Testlogger, isEquals } from '../utils'
 
 export async function useRun<Param, Tobe>(

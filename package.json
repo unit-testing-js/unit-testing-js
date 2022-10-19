@@ -53,9 +53,7 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "ts-node": "^10.4.0",
     "ts-toolbelt": "^9.6.0",
-    "typescript": "^4.5.5"
-  },
-  "dependencies": {
+    "typescript": "^4.5.5",
     "rh-mock": "^1.3.4",
     "ts-node-dev": "^1.1.8"
   }

@@ -1,18 +1,9 @@
 
-import { Func, useRun, CaseUnit, add, asyncAdd, toBe } from './assets'
+import type { Func, CaseUnit, } from './assets'
+import { useRun, add, asyncAdd, toBe } from './assets'
 export { CaseUnit, add, asyncAdd, toBe }
 
-export const RHTestCaseDictionary: Record<string, any[]> = {}
-
-function RHTestCaseDictionary_Add(name: string, cases: any[]) {
-	if (cases.length === 0 || name.length < 1) return;
-	if (!RHTestCaseDictionary[name]) {
-		RHTestCaseDictionary[name] = []
-	}
-	cases.forEach(item => {
-		RHTestCaseDictionary[name].push(item)
-	})
-}
+export * from './assets'
 
 type _TobeBase = boolean | string | number
 type TobeBase = _TobeBase | _TobeBase[]
@@ -31,7 +22,6 @@ export async function test<Param = any, Tobe = TobeBase>(
 	...cases: CaseUnit<Param, Tobe>[]
 ) {
 	await useRun<Param, Tobe>(name, func, ...cases)
-	RHTestCaseDictionary_Add(name, cases)
 }
 
 /**
@@ -44,5 +34,4 @@ export async function equal<Param = any, Tobe = TobeBase>(
 	...cases: CaseUnit<Param, Tobe>[]
 ) {
 	await useRun<Param, Tobe>(name, toBe, ...cases)
-	RHTestCaseDictionary_Add(name, cases)
 }

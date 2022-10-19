@@ -19,6 +19,7 @@ module.exports = {
     }
   },
   rules: {
+    '@typescript-eslint/consistent-type-imports': 'error',
     'no-prototype-builtins': 'off',
     // '@typescript-eslint/no-unused-vars':'off',
     // '@typescript-eslint/no-inferrable-types': 'off',

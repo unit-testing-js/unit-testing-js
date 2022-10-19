@@ -1,4 +1,4 @@
-import { CaseUnitType } from '../index'
+import type { CaseUnitType } from '../index'
 import { equal, isArray, matchValue, type as _type } from 'rh-js-methods'
 
 export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolean {

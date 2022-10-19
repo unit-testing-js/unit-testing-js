@@ -1,5 +1,5 @@
 // import { performance } from 'perf_hooks'
-import { Func } from '../type'
+import type { Func } from '../type'
 
 export interface useRunTime {
 	result: any,
