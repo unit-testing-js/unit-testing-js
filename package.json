@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
