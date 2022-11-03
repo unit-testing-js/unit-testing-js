@@ -2,3 +2,4 @@
 test/
 lib/
 src/*/__test__
+*.config.ts

@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["ESNext","DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "declaration": true,
     "sourceMap": true,
     "removeComments": false,
@@ -10,8 +13,15 @@
     "baseUrl": "./src",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
   },
-  "include": ["./src/**/*"],
-  "exclude": ["**/*/__test__/*", "**/*/__test__/", "**/*/md.ts", "**/*/*.md"]
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "**/*/__test__/*",
+    "**/*/__test__/",
+    "**/*/md.ts",
+    "**/*/*.md"
+  ]
 }

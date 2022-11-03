@@ -1,6 +1,6 @@
 {
   "name": "rh-test",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -18,6 +18,13 @@
     "eslint": "eslint . --ext .ts --fix",
     "pub:build": "npm run build && npm publish",
     "pub": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:guanruihua/rh-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guanruihua/rh-test/issues"
   },
   "keywords": [
     "typescript",
@@ -42,8 +49,9 @@
     "node-notifier": "^8.0.2",
     "prettier": "^2.5.1",
     "reflect-metadata": "^0.1.13",
-    "rh-color": "^1.0.2",
+    "rh-color": "1.0.4",
     "rh-js-methods": "^2.1.12",
+    "rh-mock": "^1.3.4",
     "rimraf": "^3.0.2",
     "rollup": "^2.66.1",
     "rollup-plugin-babel": "^4.4.0",
@@ -52,9 +60,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
     "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
     "ts-toolbelt": "^9.6.0",
-    "typescript": "^4.5.5",
-    "rh-mock": "^1.3.4",
-    "ts-node-dev": "^1.1.8"
+    "typescript": "^4.5.5"
   }
 }
