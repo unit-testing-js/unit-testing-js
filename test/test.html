@@ -19,6 +19,8 @@
 		import { test, add } from '../lib/index.esm.js'
 		// console.log(test, add)
 		test('test', add, { params: [1, 1], tobe: 2 })
+		test('test1', add, { params: [1, {1:1}], tobe: 666 })
+		test('test2', add, { params: [1, 1], tobe: 2 })
 	</script>
 </body>
 

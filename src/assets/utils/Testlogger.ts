@@ -15,13 +15,13 @@ function logNotSuccess<Param, Tobe>(list: CaseUnit<Param, Tobe>[] = [], tagColor
 		const { actual, runTime = -1, error } = unit.run
 		console.log(
 			' ' +
-			color(icon[tagFlag], tagColor) +
-			color(` ${name} `, tagColor) +
-			'tobe:' +
-			tobe +
-			'actual:' +
-			actual +
-			color(` ${error}`, 'Red') +
+			color(icon[tagFlag], tagColor) + ' '+
+			color(` ${name} `, tagColor) + ' '+
+			'tobe:' + ' '+
+			tobe + ' '+
+			'actual:' + ' '+
+			actual + ' '+
+			color(` ${error}`, 'Red') + ' '+
 			color(`${runTime}`, 'Grey')
 		)
 	})
@@ -47,11 +47,11 @@ export function Testlogger<Param, Tobe>(
 	}
 
 	console.log(
-		color(icon[tagFlag], tagColor) +
-		color(` ${name}: `, tagColor, 'Bright') +
-		color(`${SuccessQue.length} `, 'Green') +
-		(WarnningQue.length ? color(`${WarnningQue.length} `, 'Yellow') : '') +
-		(ErrorQue.length ? color(`${ErrorQue.length}`, 'Red') : '') +
+		color(icon[tagFlag], tagColor) + ' ' +
+		color(` ${name}: `, tagColor, 'Bright') + ' ' +
+		color(`${SuccessQue.length} `, 'Green') + ' ' +
+		(WarnningQue.length ? color(`${WarnningQue.length} `, 'Yellow') : '') + ' ' +
+		(ErrorQue.length ? color(`${ErrorQue.length}`, 'Red') : '') + ' ' +
 		(tagFlag !== 'Success' ? color(`${totalRunTime || -1}`, 'Grey') : '')
 	)
 	logNotSuccess<Param, Tobe>(WarnningQue, tagColor, tagFlag)
