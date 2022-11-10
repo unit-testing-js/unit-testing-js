@@ -60,13 +60,13 @@ export async function useRun<Param, Tobe>(
 		}
 
 
-		const { warningTobe, warningTobes} = unit
+		const { warningTobe, warningTobes } = unit
 		/**
 		 * 超时 warning
 		 */
 		if (
 			(timeout !== 'Infinite' && runTime > timeout)
-			) {
+		) {
 			unit.run.error = 'Time out'
 			WarnningQue.push(unit)
 			after && (await after(unit))
@@ -99,4 +99,12 @@ export async function useRun<Param, Tobe>(
 	}
 
 	Testlogger(name, SuccessQue, WarnningQue, ErrorQue, totalRunTime)
+
+	return {
+		name,
+		SuccessQue,
+		WarnningQue,
+		ErrorQue,
+		totalRunTime
+	}
 }

@@ -21,7 +21,7 @@ export async function test<Param = any, Tobe = TobeBase>(
 	name: string, func: Func,
 	...cases: CaseUnit<Param, Tobe>[]
 ) {
-	await useRun<Param, Tobe>(name, func, ...cases)
+	return await useRun<Param, Tobe>(name, func, ...cases)
 }
 
 /**
@@ -33,5 +33,5 @@ export async function equal<Param = any, Tobe = TobeBase>(
 	name: string,
 	...cases: CaseUnit<Param, Tobe>[]
 ) {
-	await useRun<Param, Tobe>(name, toBe, ...cases)
+	return await useRun<Param, Tobe>(name, toBe, ...cases)
 }
