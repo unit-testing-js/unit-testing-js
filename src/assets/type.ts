@@ -12,15 +12,45 @@ type _asyncCallback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => Promise<
 type callback<Param, Tobe> = _callback<Param, Tobe> | _asyncCallback<Param, Tobe>
 
 export type CaseUnit<Param, Tobe> = {
+	/**
+	 * 待测试执行方法
+	 */
 	func?: any
+	/**
+	 * 测试用例的别名
+	 */
 	name?: string
+	/**
+	 * 测试用例参数, 单个
+	 */
 	param?: Param
+	/**
+	 * 测试用例参数, 多个
+	 */
 	params?: Param | Param[]
+	/**
+	 * 结果
+	 */
 	tobe?: _Tobe<Tobe>
+	/**
+	 * 多选一的结果
+	 */
 	tobes?: _Tobe<Tobe>[]
+	/**
+	 * 警告结果
+	 */
 	warningTobe?: _Tobe<Tobe>
+	/**
+	 * 警告多个结果
+	 */
 	warningTobes?: _Tobe<Tobe>[]
+	/**
+	 * 结果类型
+	 */
 	type?: CaseUnitType
+	/**
+	 * 参数类型
+	 */
 	paramType?: CaseUnitParamType
 	/**
 	 * 测试执行前
@@ -38,7 +68,7 @@ export type CaseUnit<Param, Tobe> = {
 	 * @title 超时时间
 	 * @default 2000
 	 */
-	timeout?: number | 'Infinite'
+	timeout?: number
 	run?: {
 		actual: any,
 		runTime: number,

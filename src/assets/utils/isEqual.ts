@@ -3,7 +3,6 @@ import { equal, isArray, matchValue, type as _type } from 'rh-js-methods'
 
 export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolean {
 
-
 	if (
 		equal(value, afterValue)
 		|| (type === 'Type' && _type(value) === _type(afterValue))
@@ -12,7 +11,6 @@ export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolea
 
 	if (type === 'RegExp' && (afterValue as RegExp).test)
 		return (afterValue as RegExp).test(value)
-
 
 	return false
 }

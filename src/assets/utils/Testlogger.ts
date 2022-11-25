@@ -15,26 +15,30 @@ function logNotSuccess<Param, Tobe>(list: CaseUnit<Param, Tobe>[] = [], tagColor
 		const { actual, runTime = -1, error } = unit.run
 		console.log(
 			' ' +
-			color(icon[tagFlag], tagColor) + ' '+
-			color(` ${name} `, tagColor) + ' '+
-			'tobe:' + ' '+
-			tobe + ' '+
-			'actual:' + ' '+
-			actual + ' '+
-			color(` ${error}`, 'Red') + ' '+
+			color(icon[tagFlag], tagColor) + ' ' +
+			color(` ${name} `, tagColor) + ' ' +
+			'tobe:' + ' ' +
+			tobe + ' ' +
+			'actual:' + ' ' +
+			actual + ' ' +
+			color(` ${error}`, 'Red') + ' ' +
 			color(`${runTime}`, 'Grey')
 		)
 	})
 }
 
-
-export function Testlogger<Param, Tobe>(
+interface TestLoggerParam<Param, Tobe> {
 	name: string,
 	SuccessQue: CaseUnit<Param, Tobe>[],
 	WarnningQue: CaseUnit<Param, Tobe>[],
 	ErrorQue: CaseUnit<Param, Tobe>[],
 	totalRunTime: number
-) {
+}
+
+
+export function Testlogger<Param, Tobe>(params: TestLoggerParam<Param, Tobe>) {
+
+	const { name, SuccessQue, WarnningQue, ErrorQue, totalRunTime } = params
 	let tagColor: Styles = 'Cyan'
 	let tagFlag = 'Success'
 	if (WarnningQue.length > 0) {

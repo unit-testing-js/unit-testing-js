@@ -1,4 +1,3 @@
-// import { performance } from 'perf_hooks'
 import type { Func } from '../type'
 
 export interface useRunTime {
