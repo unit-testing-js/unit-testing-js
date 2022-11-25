@@ -1,6 +1,6 @@
 import { color } from 'rh-color'
 import type { Styles } from 'rh-color'
-import type { CaseUnit } from '../index'
+import type { CaseUnit } from '..'
 
 const icon = {
 	Success: '\u2714',
