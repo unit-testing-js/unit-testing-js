@@ -1,25 +1,4 @@
-// import { toArray } from 'rh-js-methods'
-
-export type BaseValueMapKey = string
-
-/**
- * 空值
- * 数字
- * 字符串
- * 类型
- * Mock数据
- */
-
-
-export const BaseValueMap = new Map<BaseValueMapKey, unknown[]>([
-	['@Empty', [null, NaN, undefined]],
-	['@Number', [0, 1, -1, Infinity, -Infinity]],
-	['@Type', [
-		'String', 'Number', 'Array', 'Object',
-		'Function', 'AsyncFunction', 'GeneratorFunction',
-		'Date', 'RegExp', 'Undefined', 'NaN']
-	],
-])
+import { BaseValueMap } from '../../constants'
 
 function toArray(val) {
 	if (Array.isArray(val))
