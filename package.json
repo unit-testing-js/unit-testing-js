@@ -1,6 +1,6 @@
 {
   "name": "unit-testing-js",
-  "version": "0.2.0.beta.1",
+  "version": "0.2.0-beta.2",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -28,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:guanruihua/rh-test.git"
+    "url": "git@github.com:guanruihua/unit-testing-js.git"
   },
   "bugs": {
-    "url": "https://github.com/guanruihua/rh-test/issues"
+    "url": "https://github.com/guanruihua/unit-testing-js/issues"
   },
   "keywords": [
     "typescript",
