@@ -14,6 +14,8 @@ type TobeBase = _TobeBase | _TobeBase[]
 export const TestResultMap = new Map<string, any>()
 export const CaseParamsMap = new Map<string, any>()
 
+export const TestSetting = new Map<string, number | string | boolean>()
+
 /**
  * @title test<Param,Tobe>
  * 
