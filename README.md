@@ -53,8 +53,3 @@ export type CaseUnit<Param, Tobe> = {
 test(name, func, {...},{...}, ...)
 // 可以打印出相应的结果
 ```
-
-## `equal<Param, Tobe>`
-
-- 等同 `test(name, tobe, ...)`
-- 方法的参数加了默认值

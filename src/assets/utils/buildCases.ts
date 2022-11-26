@@ -1,3 +1,4 @@
+import type { BaseValueMapKey } from '../../constants'
 import { BaseValueMap } from '../../constants'
 
 function toArray(val) {
@@ -22,20 +23,18 @@ function buildCaseGen(list: any[] = [], args: any[] = [], dept = 0) {
 			params[dept] = unit
 			newList.push({
 				params,
-				tobe: true
 			})
 		})
 		return buildCaseGen(newList, args, 1)
 	}
 
 	list.forEach((item: any = {}) => {
-		const { params = Array.from(args), tobe = true } = item
+		const { params = Array.from(args) } = item
 		argMapList.forEach(unit => {
 			const newParams = Array.from(params)
 			newParams[dept] = unit
 			newList.push({
 				params: newParams,
-				tobe
 			})
 		})
 	})
@@ -43,9 +42,6 @@ function buildCaseGen(list: any[] = [], args: any[] = [], dept = 0) {
 	return buildCaseGen(newList, args, dept + 1)
 }
 
-export function buildCase(...args: any[]) {
+export function Cases<T = unknown>(...args: (BaseValueMapKey | T)[]) {
 	return buildCaseGen([], args, 0)
 }
-
-// console.log(buildCase('@Empty', '@Number', 3, 4, '@Empty'))
-// console.log(BaseValueMap)
