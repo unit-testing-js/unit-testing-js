@@ -1,24 +1,16 @@
-import type { CaseUnitType } from '../index'
+import type { CaseUnitType } from '..'
 import { equal, isArray, matchValue, type as _type } from 'rh-js-methods'
 
 export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolean {
 
-
-	if (equal(value, afterValue)) {
+	if (
+		equal(value, afterValue)
+		|| (type === 'Type' && _type(value) === _type(afterValue))
+		|| (type === 'Match' && matchValue(value, afterValue)))
 		return true
-	}
 
-	if (type === 'Type' && _type(value) === _type(afterValue)) {
-		return true
-	}
-
-	if (type === 'Match' && matchValue(value, afterValue)) {
-		return true
-	}
-
-	if (type === 'RegExp' && (afterValue as RegExp).test) {
+	if (type === 'RegExp' && (afterValue as RegExp).test)
 		return (afterValue as RegExp).test(value)
-	}
 
 	return false
 }

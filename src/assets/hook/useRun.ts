@@ -12,6 +12,7 @@ export async function useRun<Param, Tobe>(
 	const ErrorQue = []
 	let totalRunTime = 0
 
+	// 遍历全部测试用例
 	for (let i = 0; i < cases.length; i++) {
 		let unit = cases[i]
 
@@ -32,6 +33,7 @@ export async function useRun<Param, Tobe>(
 			type = 'Normal', timeout = 2000
 		} = unit
 
+		// 设置 测试用例 名
 		if (!unit.name) {
 			unit.name = name + ':' + i
 		}
@@ -40,6 +42,7 @@ export async function useRun<Param, Tobe>(
 			...((Array.isArray(params)) ? params : [params || param])
 		)
 
+		// 运行总时长计算
 		if (runTime > 0) {
 			totalRunTime += runTime
 		}
@@ -48,6 +51,7 @@ export async function useRun<Param, Tobe>(
 			actual: result,
 			runTime,
 		}
+
 
 		if (unit.beforeEqual) {
 			const res = await unit.beforeEqual(unit)
@@ -60,13 +64,10 @@ export async function useRun<Param, Tobe>(
 		}
 
 
-		const { warningTobe, warningTobes } = unit
 		/**
 		 * 超时 warning
 		 */
-		if (
-			(timeout !== 'Infinite' && runTime > timeout)
-		) {
+		if (runTime > timeout ) {
 			unit.run.error = 'Time out'
 			WarnningQue.push(unit)
 			after && (await after(unit))
@@ -83,6 +84,7 @@ export async function useRun<Param, Tobe>(
 			continue;
 		}
 
+		const { warningTobe, warningTobes } = unit
 		/**
 		 * 警告
 		 */
@@ -98,7 +100,6 @@ export async function useRun<Param, Tobe>(
 
 	}
 
-	Testlogger(name, SuccessQue, WarnningQue, ErrorQue, totalRunTime)
 
 	return {
 		name,
