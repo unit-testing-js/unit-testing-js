@@ -1,6 +1,6 @@
 {
   "name": "unit-testing-js",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -52,6 +52,7 @@
     "@types/node": "^16.11.21",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
+    "abandonjs": "2.2.0-beta.2",
     "commitlint": "^17.3.0",
     "eslint": "^8.7.0",
     "husky": "^8.0.2",

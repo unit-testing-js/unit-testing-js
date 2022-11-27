@@ -1,6 +1,7 @@
 # 描述
 
 - 添加测试用例来执行是否符合预期
+- 快速生成想要的测试用例
 
 ## `test<Param, Tobe>(name:string, func:Func, ...cases: CaseUnit<Param, Tobe>)`
 
