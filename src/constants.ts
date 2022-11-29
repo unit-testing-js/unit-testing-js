@@ -5,7 +5,7 @@ export const DEFAULT_TIMEOUT = 5000 // 默认超时时间
 export type BaseValueMapKey =
 	'@EMPTY' | '@TRUE' | '@FALSE'
 	| '@NUMBER' | '@TYPE' | '@DATE'
-	| '@EMPTY_FUNCTION' | '@FUNCTION' | '@TYPE_PARAM'
+	| '@EMPTY_FUNCTION' | '@FUNCTION' | '@SIMPLE_PARAM'
 	| string
 
 export const BaseValueMap = new Map<BaseValueMapKey, unknown[]>([
