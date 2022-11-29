@@ -1,32 +1,37 @@
 import { UnitTest, add } from '../src';
 
 UnitTest(add, 'tobe')
-	.setValues({
-		0: 11,
-		2: 13,
-		4: 13,
-		6: 13,
-		5: 14,
-		7: 14,
-		8: 15
+	.setDefaultValue(12)
+	.addParamMap([11, 22])
+	.addParam(-1)
+	.addParamMap(
+		[1, 2],
+		[4, 5]
+	)
+	.addParam(1)
+	.tobe(16, 17, 17, 18, 27, 28, 28)
+	.setIndexValues({
+		0: 16,
+		15: 34,
+		// 2: 13,
+		// 4: 13,
+		// 6: 13,
+		// 5: 14,
+		12: 35,
+		17: 36
 	})
-	.defaultTobe(12)
-	.addParam(1, 2, 3)
-	.addParamMap({
-		// type: '',
-		list: [1, 2, 3]
-	}, {
-		list: [4, 5, 6]
-	})
+	.setMapValues(
+		[22, -1, 2, 5, 1], 29,
+		[22, -1, 3, 5, 1, 2, 3], 35,
+		[1, 2, 3, 3, 5], 14,
+		[1, 2, 3, 2, 1], 12,
+		[-1, 1, 2, 3, 1, 4], 10,
+	)
+	.buildCases()
+	.log('cases')
 	.run()
 
-// console.log(UnitTest)
-
-// console.log(Object.entries({
-// 	1: 'a',
-// 	2: 'b'
-// }))
-
-// console.log(
-// 	[ [ '1', 'a' ], [ '2', 'b' ] ]
-// )
+0 && UnitTest(add, 'ob')
+	.addParam({ a: 1, b: 2 })
+	.tobe({ a: 1, b: 2 })
+	.run()
