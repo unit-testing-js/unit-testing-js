@@ -1,6 +1,6 @@
 import { useRunTime } from './useRunTime'
 import type { Func, CaseUnit } from "../type"
-import { Testlogger, isEquals } from '../utils'
+import { isEquals } from '../utils'
 
 export async function useRun<Param, Tobe>(
 	name: string, func: Func,

@@ -1,6 +1,7 @@
 import { color } from 'rh-color'
 import type { Styles } from 'rh-color'
 import type { CaseUnit } from '..'
+import { type } from 'abandonjs'
 
 const icon = {
 	Success: '\u2714',
@@ -8,22 +9,37 @@ const icon = {
 	Error: '\u2718'
 }
 
+function parse(value: unknown, parseSpace = true) {
+	if (type(value) === 'Object' && parseSpace) {
+		return '\n' + JSON.stringify(value, null, 2)
+			.split('\n')
+			.map(item => item.replace(/^(.)/, '    $1'))
+			.join('\n')
+	}
+	return JSON.stringify(value)
+}
+
 function logNotSuccess<Param, Tobe>(list: CaseUnit<Param, Tobe>[] = [], tagColor: Styles, tagFlag) {
 	list.forEach((unit: CaseUnit<Param, Tobe>) => {
 		if (list.length === 0) return;
-		const { name = '', tobe } = unit
+		const { name = '', tobe, param, params } = unit
 		const { actual, runTime = -1, error } = unit.run
 		console.log(
-			' ' +
-			color(icon[tagFlag], tagColor) + ' ' +
-			color(` ${name} `, tagColor) + ' ' +
-			'tobe:' + ' ' +
-			tobe + ' ' +
-			'actual:' + ' ' +
-			actual + ' ' +
+			' ' + color(icon[tagFlag], tagColor) + ' ' +
+			color(`${name} `, tagColor) + ' ' +
+			color('actual:' + ' ' + parse(actual, false) + ' ', 'Magenta') +
+			color('tobe:' + ' ' + parse(tobe, false) + ' ', 'Cyan') +
 			color(` ${error}`, 'Red') + ' ' +
 			color(`${runTime}`, 'Grey')
 		)
+		if (param) {
+			console.log(color('  param: ', 'Yellow') + parse(param))
+		} else {
+			console.log(color('  params: ', 'Yellow') + parse(params))
+		}
+
+		console.log(color('  tobe: ', 'Yellow') + parse(tobe))
+		console.log(color('  actual: ', 'Yellow') + parse(actual))
 	})
 }
 
@@ -52,7 +68,7 @@ export function Testlogger<Param, Tobe>(params: TestLoggerParam<Param, Tobe>) {
 
 	console.log(
 		color(icon[tagFlag], tagColor) + ' ' +
-		color(` ${name}: `, tagColor, 'Bright') + ' ' +
+		color(`${name}: `, tagColor, 'Bright') + ' ' +
 		color(`${SuccessQue.length} `, 'Green') + ' ' +
 		(WarnningQue.length ? color(`${WarnningQue.length} `, 'Yellow') : '') + ' ' +
 		(ErrorQue.length ? color(`${ErrorQue.length}`, 'Red') : '') + ' ' +

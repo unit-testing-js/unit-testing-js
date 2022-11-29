@@ -2,6 +2,7 @@
 import type { CaseUnit, Func } from './assets'
 import { add, asyncAdd, Testlogger, toBe, useRun } from './assets'
 
+export * from './constants'
 export * from './assets'
 export { CaseUnit, add, asyncAdd, toBe }
 
