@@ -1,7 +1,9 @@
 import { UnitTest, add } from '../src';
 
-
-
+UnitTest(add, 'tobe')
+	.addParam({ a: 123, b: 234 })
+	.buildCases()
+	.run()
 
 UnitTest(add, 'tobe')
 	.setDefaultValue(12)
@@ -20,7 +22,7 @@ UnitTest(add, 'tobe')
 		// 4: 13,
 		// 6: 13,
 		// 5: 14,
-		12: 35,
+		// 12: 35,
 		17: 36
 	})
 	.setMapValues(

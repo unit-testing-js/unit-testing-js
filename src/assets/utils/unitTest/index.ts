@@ -1,6 +1,6 @@
 import { UnitTestInterface } from './interface'
 import { run, buildCases, debug } from './run'
-class _UnitTest<Param, Result> extends UnitTestInterface<Param, Result> {
+class _UnitTest extends UnitTestInterface {
 
 	constructor(func: any, name: string) {
 		super();
@@ -11,7 +11,7 @@ class _UnitTest<Param, Result> extends UnitTestInterface<Param, Result> {
 		this.debug = debug
 	}
 
-	log(...keys: (keyof _UnitTest<Param, Result>)[]) {
+	log(...keys: (keyof _UnitTest)[]) {
 		keys.forEach(item => {
 			if (this[item]) {
 				console.log(this[item])

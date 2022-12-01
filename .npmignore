@@ -3,8 +3,9 @@ src/
 push.bat
 *.md
 .gitignore
-jest.config.ts
+*.config.ts
 tsconfig.json
 .*
 rollup.*
 node_modules/
+commitlint.config.js
