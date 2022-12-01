@@ -4,12 +4,11 @@ export const DEFAULT_TIMEOUT = 5000 // 默认超时时间
 
 export type BaseValueMapKey =
 	'@EMPTY' | '@TRUE' | '@FALSE'
-	| '@NUMBER' | '@TYPE' | '@DATE'
+	| '@NUMBER' | '@TYPE' | '@DATE' | '@PROMISE'
 	| '@EMPTY_FUNCTION' | '@FUNCTION' | '@SIMPLE_PARAM'
 	| string
 
-export const BaseValueMap = new Map<BaseValueMapKey, any[]>([
-	
+export const _BaseValueMap_ = new Map<BaseValueMapKey, any[]>([
 	['@EMPTY', [null, NaN, undefined]],
 	['@TRUE', [true, 1, 10, 'template', [], {}]],
 	['@FALSE', [false, 0, -1, null, NaN, undefined, '']],
@@ -22,17 +21,18 @@ export const BaseValueMap = new Map<BaseValueMapKey, any[]>([
 		]
 	],
 	['@TYPE', [
-		'String', 'Number', 'Array', 'Object',
+		'String', 'Number', 'Array', 'Object', 'Symbol', 'Proxy',
 		'Function', 'AsyncFunction', 'GeneratorFunction',
-		'Date', 'RegExp', 'Undefined', 'NaN']
+		'Date', 'RegExp', 'Undefined', 'NaN', 'Promise', 'Null'
+	]
 	],
 	['@DATE', [
 		new Date(),
-		new Date().getTime(),
-		new Date().getTime().toString(),
-		new Date().getTime().toString().substring(0, 10),
+		1669900531674,
+		1669900531,
+		'1669900531674',
+		'1669900531',
 	]],
-
 	['@EMPTY_FUNCTION', [
 		function () { return },
 		() => { return },
@@ -59,3 +59,10 @@ export const BaseValueMap = new Map<BaseValueMapKey, any[]>([
 		new Date(),
 	]]
 ])
+
+export const BaseValueMap = {
+	get: function (...keys: BaseValueMapKey[]): any[] {
+		const result = keys.map(key => _BaseValueMap_.get(key))
+		return [].concat(...result)
+	}
+}

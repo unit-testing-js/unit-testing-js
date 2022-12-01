@@ -1,3 +1,4 @@
+import { stringify } from 'abandonjs'
 import type { IUnitTest } from './type'
 export class UnitTestInterface implements IUnitTest {
 
@@ -47,7 +48,7 @@ export class UnitTestInterface implements IUnitTest {
 		for (let i = 0; i < records.length; i += 2) {
 			const key = records[i] as any
 			const value = records[i + 1] as any
-			this.values.set(JSON.stringify(key), value)
+			this.values.set(stringify(key), value)
 		}
 		return this
 	}
@@ -61,8 +62,8 @@ export class UnitTestInterface implements IUnitTest {
 	getTobe(index: number, params: any) {
 		const { defaultValue, values, indexValues } = this
 
-		if (values.has(JSON.stringify(params)))
-			return values.get(JSON.stringify(params))
+		if (values.has(stringify(params)))
+			return values.get(stringify(params))
 
 		if (indexValues.has(String(index)))
 			return indexValues.get(String(index))

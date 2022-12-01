@@ -1,7 +1,7 @@
 import { color } from 'rh-color'
 import type { Styles } from 'rh-color'
 import type { CaseUnit } from '..'
-import { type } from 'abandonjs'
+import { type, stringify } from 'abandonjs'
 
 const icon = {
 	Success: '\u2714',
@@ -16,7 +16,7 @@ function parse(value: unknown, parseSpace = true) {
 			.map(item => item.replace(/^(.)/, '    $1'))
 			.join('\n')
 	}
-	return JSON.stringify(value)
+	return stringify(value)
 }
 
 function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
@@ -43,7 +43,7 @@ function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
 	})
 }
 
-interface TestLoggerParam<Param, Tobe> {
+interface TestLoggerParam {
 	name: string,
 	SuccessQue: CaseUnit[],
 	WarnningQue: CaseUnit[],
@@ -52,7 +52,7 @@ interface TestLoggerParam<Param, Tobe> {
 }
 
 
-export function Testlogger<Param, Tobe>(params: TestLoggerParam<Param, Tobe>) {
+export function Testlogger(params: TestLoggerParam) {
 
 	const { name, SuccessQue, WarnningQue, ErrorQue, totalRunTime } = params
 	let tagColor: Styles = 'Cyan'
