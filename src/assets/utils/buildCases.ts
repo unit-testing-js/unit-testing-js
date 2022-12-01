@@ -1,26 +1,26 @@
 import type { BaseValueMapKey } from '../../constants'
 import { BaseValueMap } from '../../constants'
 import { type } from 'abandonjs'
+import type { CaseUnit } from '../type'
 
-type CaseMapUnit<T> = {
+export type CaseMapUnit = {
 	'$$type': string
-	map: unknown[]
-} | BaseValueMapKey | T
-
+	map: any[]
+} | BaseValueMapKey | number | any
 
 /**
  * 部分用例还无法通过, 请不要使用
  */
-export function Cases<T = unknown>(...args: CaseMapUnit<T>[]) {
+export function Cases<Param = any>(...args: (CaseMapUnit | Param)[]): CaseUnit[] {
 
-	const caseMapList: any[][] = []
+	const caseMapList: Param[][] = []
 	let total = 1
 
-	function getCaseMapUnit(args: any) {
+	function getCaseMapUnit(args) {
 		if (type(args) === 'String') {
 			const record = BaseValueMap.get(args as string)
 			if (record && record.length > 0) {
-				caseMapList.push(record)
+				caseMapList.push(record as Param[])
 				total = total * record.length
 				return;
 			}
@@ -61,8 +61,8 @@ export function Cases<T = unknown>(...args: CaseMapUnit<T>[]) {
 		return result
 	}
 
-	function getIndexValue(index: number): unknown[] {
-		const result: unknown[] = []
+	function getIndexValue(index: number): Param[] {
+		const result: Param[] = []
 		caseMapList.forEach((item, i) => {
 			const len = item.length
 			const restLen = getRestLen(i)
@@ -73,15 +73,11 @@ export function Cases<T = unknown>(...args: CaseMapUnit<T>[]) {
 
 	getCaseMapUnit(args)
 
-	const result: {
-		params: CaseMapUnit<T>
-		[key: string]: any
-	}[] = []
+	const result: CaseUnit[] = []
 
 	for (let index = 0; index < total; index++) {
 
 		const unitValues = getIndexValue(index)
-		// console.log(unitValues)
 
 		const setCaseMapUnit = (args) => {
 			if (type(args) === 'String') {
@@ -107,15 +103,39 @@ export function Cases<T = unknown>(...args: CaseMapUnit<T>[]) {
 					return setCaseMapUnit(arg)
 				})
 
-			return args
+			return
 		}
 
 		result.push({ params: setCaseMapUnit([...args]) })
 	}
 
-	// console.log('------')
-	// console.log(caseMapList)
-	// console.log('------')
-
 	return result
 }
+
+// import { test } from '../..'
+// import { filter } from 'abandonjs'
+
+// test('filter-no-filterConditions', filter,
+// 	...Cases<any>('@EMPTY', 123, '@EMPTY').map(item => {
+// 		item.tobe = item.params
+// 		item.params = [item.params]
+// 		return item
+// 	})
+// )
+
+// test('filter-filterConditions=Boolean', filter,
+// 	...Cases<any>('@EMPTY', 123, '@EMPTY').map(item => {
+// 		item.tobe = [123]
+// 		item.params = [item.params, Boolean]
+// 		return item
+// 	})
+// )
+
+// test('filter-filterConditions=Object', filter,
+// 	...Cases('@EMPTY', 123, '@EMPTY').map(item => {
+// 		const tempValue = [...item.params]
+// 		item.tobe = [{ ...tempValue }]
+// 		item.params = [[tempValue, { ...tempValue }], { 1: 2 }]
+// 		return item
+// 	})
+// )

@@ -3,15 +3,9 @@ export type Func = (...args: any[]) => (Promise<any> | any)
 export type CaseUnitType = 'Normal' | 'RegExp' | 'Match' | 'Matcher' | 'Type'
 export type CaseUnitParamType = 'Normal'
 
-export type _Tobe<T> = number | string | RegExp | T
+type Callback = (caseUnit: CaseUnit) => CaseUnit | ((caseUnit: CaseUnit) => Promise<CaseUnit>)
 
-type _callback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => CaseUnit<Param, Tobe>
-
-type _asyncCallback<Param, Tobe> = (caseUnit: CaseUnit<Param, Tobe>) => Promise<CaseUnit<Param, Tobe>>
-
-type callback<Param, Tobe> = _callback<Param, Tobe> | _asyncCallback<Param, Tobe>
-
-export type CaseUnit<Param, Tobe> = {
+export type CaseUnit = {
 	/**
 	 * 待测试执行方法
 	 */
@@ -23,27 +17,27 @@ export type CaseUnit<Param, Tobe> = {
 	/**
 	 * 测试用例参数, 单个
 	 */
-	param?: Param
+	param?: any
 	/**
 	 * 测试用例参数, 多个
 	 */
-	params?: Param | Param[]
+	params?: any[]
 	/**
 	 * 结果
 	 */
-	tobe?: _Tobe<Tobe>
+	tobe?: any
 	/**
 	 * 多选一的结果
 	 */
-	tobes?: _Tobe<Tobe>[]
+	tobes?: any[]
 	/**
 	 * 警告结果
 	 */
-	warningTobe?: _Tobe<Tobe>
+	warningTobe?: any
 	/**
 	 * 警告多个结果
 	 */
-	warningTobes?: _Tobe<Tobe>[]
+	warningTobes?: any
 	/**
 	 * 结果类型
 	 */
@@ -55,15 +49,15 @@ export type CaseUnit<Param, Tobe> = {
 	/**
 	 * 测试执行前
 	 */
-	before?: callback<Param, Tobe>
+	before?: Callback
 	/**
 	 * 判断结果是否正确前
 	 */
-	beforeEqual?: callback<Param, Tobe>
+	beforeEqual?: Callback
 	/**
 	 * 打印结果前
 	 */
-	after?: callback<Param, Tobe>
+	after?: Callback
 	/**
 	 * @title 超时时间
 	 * @default 2000

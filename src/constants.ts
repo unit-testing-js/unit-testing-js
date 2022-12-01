@@ -8,7 +8,7 @@ export type BaseValueMapKey =
 	| '@EMPTY_FUNCTION' | '@FUNCTION' | '@SIMPLE_PARAM'
 	| string
 
-export const BaseValueMap = new Map<BaseValueMapKey, unknown[]>([
+export const BaseValueMap = new Map<BaseValueMapKey, any[]>([
 	
 	['@EMPTY', [null, NaN, undefined]],
 	['@TRUE', [true, 1, 10, 'template', [], {}]],

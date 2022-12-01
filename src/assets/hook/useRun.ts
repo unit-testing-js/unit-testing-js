@@ -2,9 +2,9 @@ import { useRunTime } from './useRunTime'
 import type { Func, CaseUnit } from "../type"
 import { isEquals } from '../utils'
 
-export async function useRun<Param, Tobe>(
+export async function useRun(
 	name: string, func: Func,
-	...cases: CaseUnit<Param, Tobe>[]
+	...cases: CaseUnit[]
 ) {
 
 	const SuccessQue = []
