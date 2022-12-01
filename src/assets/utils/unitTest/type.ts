@@ -1,18 +1,17 @@
-export interface IUnitTest<Param, Result> {
+export interface IUnitTest {
 	name: string
-	defaultValue: Result
-	params: Param[]
-	values: Map<string, Result>
-	weakValues?: WeakMap<any, any>
-	paramMaps: Map<string, Param[] | Result>
+	defaultValue: any
+	params: any[]
+	values: Map<string, any>
+	paramMaps: Map<string, any[] | any>
 
 
-	addParam: (...params: Param[]) => IUnitTest<Param, Result>
-	addParamMap: (...params: Param[][]) => IUnitTest<Param, Result>
+	addParam: (...params: any[]) => this
+	addParamMap: (...params: any[][]) => this
 
-	setDefaultValue: (value: Result) => IUnitTest<Param, Result>
-	tobe: (...values: Result[]) => IUnitTest<Param, Result>
-	setIndexValues: (record: Record<string, Result>) => IUnitTest<Param, Result>
+	setDefaultValue: (value: any) => this
+	tobe: (...values: any[]) => this
+	setIndexValues: (record: Record<string, any>) => this
 
 	run: () => Promise<void>
 	debug: () => Promise<void>
