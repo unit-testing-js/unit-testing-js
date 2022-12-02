@@ -27,7 +27,7 @@ export const _BaseValueMap_ = new Map<BaseValueMapKey, any[]>([
 	]
 	],
 	['@DATE', [
-		new Date(),
+		new Date(2022,12,2,4,13,14),
 		1669900531674,
 		1669900531,
 		'1669900531674',
