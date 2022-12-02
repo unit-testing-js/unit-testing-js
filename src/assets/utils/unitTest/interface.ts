@@ -1,5 +1,6 @@
 import { stringify } from 'abandonjs'
 import type { IUnitTest } from './type'
+
 export class UnitTestInterface implements IUnitTest {
 
 	name: string
@@ -72,6 +73,7 @@ export class UnitTestInterface implements IUnitTest {
 	}
 	addCases(...cases: { params: any[], tobe: any }[]) {
 		this.cases = this.cases.concat(cases)
+		return this
 	}
 	buildCases() {
 		console.warn('buildCases Method not implemented');
