@@ -1,5 +1,5 @@
-import type { BaseValueMapKey } from '../../constants'
-import { BaseValueMap } from '../../constants'
+import type { BaseValueMapKey } from '../constants'
+import { BaseValueMap } from '../constants'
 import { type } from 'abandonjs'
 import type { CaseUnit } from '../type'
 

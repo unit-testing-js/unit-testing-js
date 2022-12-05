@@ -10,16 +10,16 @@ specifiers:
   '@types/node': ^16.11.21
   '@typescript-eslint/eslint-plugin': ^5.10.1
   '@typescript-eslint/parser': ^5.10.1
-  abandonjs: 2.2.0-beta.4
+  abandonjs: 2.3.0
   commitlint: ^17.3.0
   eslint: ^8.7.0
+  fakingjs: ^0.1.1
   husky: ^8.0.2
   lint-staged: ^12.3.2
   node-notifier: ^8.0.2
   prettier: ^2.5.1
   reflect-metadata: ^0.1.13
   rh-color: 1.0.4
-  rh-js-methods: ^2.1.12
   rh-mock: ^1.3.4
   rimraf: ^3.0.2
   rollup: ^2.66.1
@@ -43,16 +43,16 @@ devDependencies:
   '@types/node': 16.11.21
   '@typescript-eslint/eslint-plugin': 5.10.1_b5cc623aheccsbq5lwnwxsvluy
   '@typescript-eslint/parser': 5.10.1_j2dpqr3duszxwhwhg5puk5zm6e
-  abandonjs: 2.2.0-beta.4
+  abandonjs: 2.3.0
   commitlint: 17.3.0
   eslint: 8.7.0
+  fakingjs: 0.1.1
   husky: 8.0.2
   lint-staged: 12.3.2
   node-notifier: 8.0.2
   prettier: 2.5.1
   reflect-metadata: 0.1.13
   rh-color: 1.0.4
-  rh-js-methods: 2.1.12
   rh-mock: 1.3.4
   rimraf: 3.0.2
   rollup: 2.66.1
@@ -1786,8 +1786,8 @@ packages:
       through: 2.3.8
     dev: true
 
-  /abandonjs/2.2.0-beta.4:
-    resolution: {integrity: sha512-eEYEseVAgW1bwVQOryzDjziqxZkSEFwIMJ+TCU4w5Tl96dMjrd5QZcjctwu2zcgXznGDHtUla7RyO7GeMgs1/g==}
+  /abandonjs/2.3.0:
+    resolution: {integrity: sha512-dC7FwFslP7Tsc4QPznbk6RvDzVhmxW6jFWZnJW17GxAFqkwZfhG9M7adejkShIPmh1OmOdb+HaVJSuJdZjF96Q==}
     engines: {node: '>=16'}
     dev: true
 
@@ -2637,6 +2637,10 @@ packages:
       chardet: 0.7.0
       iconv-lite: 0.4.24
       tmp: 0.0.33
+    dev: true
+
+  /fakingjs/0.1.1:
+    resolution: {integrity: sha512-cIAPhXOmwSgYExSHK3QdgKFHiwGz+fGmtKQf/xe0U58PmRsB5MYTzzINuSxaokO4Gmzf1HnjhugNyYzKWidevg==}
     dev: true
 
   /fast-deep-equal/3.1.3:
@@ -3900,13 +3904,6 @@ packages:
     resolution: {integrity: sha512-jSQpbELnwODbJylbykPjT5rpjBxlB3pJAPYbHhBCJIiDIGA0ojbzL0eeCmOqx84d3zpt27eRV4eeWczalIbzig==}
     dependencies:
       reflect-metadata: 0.1.13
-      rh-ts-methods: 0.0.2
-    dev: true
-
-  /rh-js-methods/2.1.12:
-    resolution: {integrity: sha512-lu9o77OqBfLAs3gCSrG7usZngYeWavBhBg7xtV2QPeYMj9pNrY5hcOlTtRibd9VQ/CgDJ3zf1Ukf1f0+WLQWsw==}
-    engines: {node: '>=16'}
-    dependencies:
       rh-ts-methods: 0.0.2
     dev: true
 

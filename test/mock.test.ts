@@ -1,5 +1,5 @@
-import { test } from './index.test'
-import { Mock } from 'rh-mock'
+import { test } from '../src'
+import Mock from 'fakingjs'
 
 const add = (a, b) => {
 	console.log(a, b)
