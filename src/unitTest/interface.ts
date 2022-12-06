@@ -81,7 +81,13 @@ export class UnitTestInterface implements IUnitTest {
 	}
 	async run() {
 		console.warn('run Method not implemented');
-		return
+		return {
+			name: 'name',
+			SuccessQue: [],
+			WarnningQue: [],
+			ErrorQue: [],
+			totalRunTime: 0
+		}
 	}
 	async debug() {
 		console.warn('debug Method not implemented');

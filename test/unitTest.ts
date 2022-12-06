@@ -1,7 +1,8 @@
 import { UnitTest, add } from '../src';
 
-UnitTest(add, 'tobe')
+UnitTest(add, 'tobe:a')
 	.addParam({ a: 123, b: 234 })
+	.setIndexValues({ 0: { a: 123, b: 234 } })
 	.buildCases()
 	.run()
 
@@ -33,7 +34,7 @@ UnitTest(add, 'tobe')
 		[-1, 1, 2, 3, 1, 4], 10,
 	)
 	.buildCases()
-	.log('cases')
+	// .log('cases')
 	.run()
 
 0 && UnitTest(add, 'ob')

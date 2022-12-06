@@ -1,4 +1,4 @@
-import { BaseValueMap } from '../../constants'
+import { BaseValueMap } from '../constants'
 
 /**
  * @description 用于占位的方法

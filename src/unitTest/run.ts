@@ -1,5 +1,5 @@
-import { useRun } from '../../hook'
-import { Testlogger } from '../Testlogger'
+import { useRun } from '../hook'
+import { test } from '..'
 
 function toParam(arg: any[], map: any[], sect: number[]) {
 	let result = []
@@ -65,13 +65,12 @@ export function buildCases() {
 
 export async function run() {
 	const { name, func, cases } = this
-	const result = await useRun(name, func, ...cases)
-	Testlogger(result)
+	return test(name, func, ...cases)
 }
 
 export async function debug(...indexes: number[]) {
 	const { name, func, cases } = this
 	const result = await useRun(name, func,
 		...cases.filter((item, index) => indexes.includes(index)))
-	Testlogger(result)
+	// Testlogger(result)
 }

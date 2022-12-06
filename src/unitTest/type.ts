@@ -1,3 +1,12 @@
+
+interface RunResult {
+	name: string
+	SuccessQue: any[]
+	WarnningQue: any[]
+	ErrorQue: any[]
+	totalRunTime: number
+}
+
 export interface IUnitTest {
 	name: string
 	defaultValue: any
@@ -13,6 +22,6 @@ export interface IUnitTest {
 	tobe: (...values: any[]) => this
 	setIndexValues: (record: Record<string, any>) => this
 
-	run: () => Promise<void>
+	run: () => Promise<RunResult>
 	debug: () => Promise<void>
 }

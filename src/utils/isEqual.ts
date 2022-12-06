@@ -1,5 +1,5 @@
-import type { CaseUnitType } from '..'
-import { equal, isArray, matchValue, type as _type } from 'rh-js-methods'
+import type { CaseUnitType } from '../type'
+import { equal, isArray, matchValue, type as _type } from 'abandonjs'
 
 export function isEqual(value: any, afterValue: any, type: CaseUnitType): boolean {
 
