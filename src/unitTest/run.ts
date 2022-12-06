@@ -65,7 +65,7 @@ export function buildCases() {
 
 export async function run() {
 	const { name, func, cases } = this
-	return await test(name, func, ...cases)
+	return test(name, func, ...cases)
 }
 
 export async function debug(...indexes: number[]) {
