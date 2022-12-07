@@ -2,7 +2,7 @@ import { test } from '../../src'
 import { toArray } from 'abandonjs'
 
 test('02', toArray,
-	{ params: [123], tobe: 123 },
+	{ params: [123], tobe: [123] },
 	// { params: [null], tobe: [-Infinity] },
 	{ params: [true], tobe: [true] },
 	{ params: [1], tobe: [1] },
