@@ -9,13 +9,19 @@ const icon = {
 	Error: '\u2718'
 }
 
-function parse(value: unknown, parseSpace = true) {
-	if (type(value) === 'Object' && parseSpace) {
-		return '\n' + JSON.stringify(value, null, 2)
-			.split('\n')
-			.map(item => item.replace(/^(.)/, '    $1'))
-			.join('\n')
+function parse(value: unknown, parseArray = false) {
+	if (type(value) === 'Array' && parseArray) {
+		return (value as any[]).map(
+			(item) => stringify(item) + color(` <${type(item)}>`, 'Grey')
+		).join(', ')
 	}
+	// if (type(value) === 'Object' && parseSpace) {
+	// 	return '\n' + JSON.stringify(value, null, 2)
+	// 		.split('\n')
+	// 		.map(item => item.replace(/^(.)/, '    $1'))
+	// 		.join('\n')
+	// }
+	// return stringify(value, null, 2)
 	return stringify(value)
 }
 
@@ -25,21 +31,22 @@ function logNotSuccess(list: CaseUnit[] = [], tagColor: Styles, tagFlag) {
 		const { name = '', tobe, param, params } = unit
 		const { actual, runTime = -1, error } = unit.run
 		console.log(
-			' ' + color(icon[tagFlag], tagColor) + ' ' +
-			color(`${name} `, tagColor) + ' ' +
-			color('actual:' + ' ' + parse(actual, false) + ' ', 'Magenta') +
-			color('tobe:' + ' ' + parse(tobe, false) + ' ', 'Cyan') +
-			color(` ${error}`, 'Red') + ' ' +
-			color(`${runTime}`, 'Grey')
+			' ' + color(icon[tagFlag], tagColor) +
+			color(` ${name} `, tagColor) +
+			// color('actual:' + ' ' + parse(actual, false) + ' ', 'Magenta') +
+			// color('tobe:' + ' ' + parse(tobe, false) + ' ', 'Cyan') +
+			// color(`${error}`, 'Red') +
+			color(` ${runTime}`, 'Grey')
 		)
 		if (param) {
-			console.log(color('  param: ', 'Yellow') + parse(param))
+			console.log(color('  param: ', 'Magenta') + parse(param))
 		} else {
-			console.log(color('  params: ', 'Yellow') + parse(params))
+			console.log(color('  params: ', 'Magenta') + parse(params, true))
+			// .replace(/^(\[)+|(\])+$/g, ''))
 		}
 
-		console.log(color('  tobe: ', 'Yellow') + parse(tobe))
-		console.log(color('  actual: ', 'Yellow') + parse(actual))
+		console.log(color('  tobe: ', 'Yellow') + parse(tobe) + color(` <${type(tobe)}>`, 'Grey'))
+		console.log(color('  actual: ', 'Cyan') + parse(actual) + color(` <${type(actual)}>`, 'Grey'))
 	})
 }
 
@@ -78,12 +85,10 @@ export function TestModuleLogger(params: Record<string, any>) {
 	console.log(
 		color(icon[tagFlag], tagColor) + ' ' +
 		color(`${name}: `, tagColor, 'Bright') +
-		'Case: ' + color(`${successCaseNum}/${successCaseNum + errorCaseNum + warningCaseNum}`, 'Green') + ' ' +
 		'Module: ' + color(`${successModuleNum}/${successModuleNum + errorModuleNum + warningModuleNum}`, 'Green') + ' ' +
-		(warningCaseNum > 0 ? color(`Warning: ${warningCaseNum}`, 'Yellow') : '') +
-		(warningModuleNum > 0 ? color(`WarningModule: ${warningModuleNum} `, 'Yellow') : '') +
-		(errorCaseNum > 0 ? color(`Error: ${errorCaseNum}`, 'Red') : '') + ' ' +
-		(errorModuleNum > 0 ? color(`ErrorModule: ${errorModuleNum}`, 'Red') : '') + ' ' +
+		'Case: ' + color(`${successCaseNum}/${successCaseNum + errorCaseNum + warningCaseNum}`, 'Green') + ' ' +
+		(errorCaseNum > 0 ? color(`Error: ${errorModuleNum}-${errorCaseNum} `, 'Red') : '') + 
+		(warningCaseNum > 0 ? color(`Warning: ${warningModuleNum}-${warningCaseNum} `, 'Yellow') : '') +
 		(tagFlag !== 'Success' ? color(`${totalRunTime || -1}`, 'Grey') : '')
 	)
 
