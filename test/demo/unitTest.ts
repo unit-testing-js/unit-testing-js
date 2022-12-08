@@ -1,4 +1,4 @@
-import { UnitTest, add } from '../src';
+import { UnitTest, add } from '../../src';
 
 UnitTest(add, 'tobe:a')
 	.addParam({ a: 123, b: 234 })

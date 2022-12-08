@@ -14,9 +14,8 @@ export interface IUnitTest {
 	values: Map<string, any>
 	paramMaps: Map<string, any[] | any>
 
-
 	addParam: (...params: any[]) => this
-	addParamMap: (...params: any[][]) => this
+	addParamMap: (...params: any[]) => this
 
 	setDefaultValue: (value: any) => this
 	tobe: (...values: any[]) => this
