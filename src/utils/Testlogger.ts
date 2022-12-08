@@ -15,13 +15,6 @@ function parse(value: unknown, parseArray = false) {
 			(item) => stringify(item) + color(` <${type(item)}>`, 'Grey')
 		).join(', ')
 	}
-	// if (type(value) === 'Object' && parseSpace) {
-	// 	return '\n' + JSON.stringify(value, null, 2)
-	// 		.split('\n')
-	// 		.map(item => item.replace(/^(.)/, '    $1'))
-	// 		.join('\n')
-	// }
-	// return stringify(value, null, 2)
 	return stringify(value)
 }
 

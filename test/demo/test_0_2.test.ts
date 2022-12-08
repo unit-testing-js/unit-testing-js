@@ -1,4 +1,4 @@
-import { test, add } from './index.test'
+import { test, add } from '../../lib'
 
 test('测试', add,
 	{ param: 1, tobe: 1 },

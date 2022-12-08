@@ -1,9 +1,8 @@
+import { TestSetting, _TestResultMap } from '..';
 import { TestModuleLogger, Testlogger } from './Testlogger'
-import { TestResultMap } from '..'
 
 async function handleResult(timeout = 300) {
 	setTimeout(() => {
-		// console.log(TestResultMap)
 		let successCaseNum = 0
 		let successModuleNum = 0
 		let warningCaseNum = 0
@@ -12,7 +11,7 @@ async function handleResult(timeout = 300) {
 		let errorModuleNum = 0
 		let totalRunTime = 0
 
-		TestResultMap.forEach(item => {
+		_TestResultMap.forEach(item => {
 			const { SuccessQue = [], ErrorQue = [], WarnningQue = [] } = item
 			let flag = true
 			successCaseNum += SuccessQue.length
@@ -30,7 +29,6 @@ async function handleResult(timeout = 300) {
 				errorModuleNum++;
 				flag = false
 				Testlogger(item);
-
 			}
 
 			if (flag) {
@@ -51,21 +49,11 @@ async function handleResult(timeout = 300) {
 	}, timeout)
 }
 
-
-// export async function loadModule(modules: string[]) {
-export async function loadModule(load: () => Promise<any[]>, timeout = 300) {
+export async function loadModule(load: () => Promise<void | any[]>, timeout = 300) {
 
 	await load()
-	await handleResult(timeout)
-
-	// for (let i = 0; i < modules.length; i++) {
-	// 	try {
-	// 		await import(modules[i])
-	// 	} catch (error) {
-	// 		console.error(modules[i]+':loadError')
-	// 	}
-	// }
-
-
+	if (TestSetting.get('isSummary')) {
+		await handleResult(timeout)
+	}
 
 }

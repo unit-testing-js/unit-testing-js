@@ -1,4 +1,4 @@
-import { test } from '../src'
+import { test } from '../../src'
 import Mock from 'fakingjs'
 
 const add = (a, b) => {

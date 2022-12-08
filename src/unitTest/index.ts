@@ -1,26 +1,20 @@
-import { UnitTestInterface } from './interface'
-import { run, buildCases, debug } from './run'
-class _UnitTest extends UnitTestInterface {
+import { stringify, type } from 'abandonjs'
+import { _UnitTest } from './interface'
 
-	constructor(func: any, name: string) {
-		super();
-		this.func = func
-		this.name = name
-		this.run = run
-		this.buildCases = buildCases
-		this.debug = debug
-	}
+function getFunctionName(func: any) {
+	if (type(func) !== 'Function') return 'Undefined'
+	const functionReg = /function[\s|\*]([0-9a-zA-Z]+)/
+	const matchArray = functionReg.exec(stringify(func)) || []
 
-	log(...keys: (keyof _UnitTest)[]) {
-		keys.forEach(item => {
-			if (this[item]) {
-				console.log(this[item])
-			}
-		})
-		return this
+	if (matchArray.length > 1) {
+		return matchArray[1]
 	}
+	return 'Undefined'
 }
 
-export function UnitTest(func: any, name: string) {
+export function UnitTest(func: any, name?: string) {
+	if (name === undefined) {
+		name = getFunctionName(func)
+	}
 	return new _UnitTest(func, name)
 }

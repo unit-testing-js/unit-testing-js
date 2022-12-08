@@ -10,7 +10,7 @@ specifiers:
   '@types/node': ^16.11.21
   '@typescript-eslint/eslint-plugin': ^5.10.1
   '@typescript-eslint/parser': ^5.10.1
-  abandonjs: 2.3.1
+  abandonjs: 2.3.2
   commitlint: ^17.3.0
   eslint: ^8.7.0
   fakingjs: ^0.1.1
@@ -43,7 +43,7 @@ devDependencies:
   '@types/node': 16.11.21
   '@typescript-eslint/eslint-plugin': 5.10.1_b5cc623aheccsbq5lwnwxsvluy
   '@typescript-eslint/parser': 5.10.1_j2dpqr3duszxwhwhg5puk5zm6e
-  abandonjs: 2.3.1
+  abandonjs: 2.3.2
   commitlint: 17.3.0
   eslint: 8.7.0
   fakingjs: 0.1.1
@@ -1786,8 +1786,8 @@ packages:
       through: 2.3.8
     dev: true
 
-  /abandonjs/2.3.1:
-    resolution: {integrity: sha512-UacUuTM4de6olnit679fLiSJH/Mvj3GeeA5H45Jqch/Q09gkkO4QeckLZyahlRdnzkwZfDebKjDWFE/TKBY2Jw==}
+  /abandonjs/2.3.2:
+    resolution: {integrity: sha512-TqFGzoWWfQaU6V7YJ113oT1S4DELmo1HsVegrHU18snFvYSGPE0n+jPwja1In8bb8Y/lPbdhMhyBAB4fugahow==}
     engines: {node: '>=16'}
     dev: true
 

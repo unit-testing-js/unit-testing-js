@@ -10,7 +10,21 @@ export * from './unitTest'
 
 export { CaseUnit }
 
-export const TestResultMap = new Map<string, any>()
+// const TestResultMap = new Map<string, any>()
+export const _TestResultMap = new Map<string, any>()
+
+export const TestResultMap = {
+	get: function (name: string) {
+		return _TestResultMap.get(name)
+	},
+	set: function (name: string, result: any) {
+		if (_TestResultMap.has(name)) {
+			_TestResultMap.set(`${name}+`, result)
+			return
+		}
+		_TestResultMap.set(name, result)
+	}
+}
 
 export const TestSetting = new Map<string, number | string | boolean>([
 	// 汇总结果集
@@ -27,17 +41,15 @@ export const TestSetting = new Map<string, number | string | boolean>([
  * @param func Function 待测试的方法
  * @param ...cases:CaseUnit<Param,Tobe> 测试用用例
  */
-export async function test(
-	name: string,
-	func: Func,
-	...cases: CaseUnit[]
-) {
+export async function test(name: string, func: Func, ...cases: CaseUnit[]) {
 
 	const result = await useRun(name, func, ...cases)
 
 	TestResultMap.set(name, result)
 
-	TestSetting.get('isSummary') && Testlogger(result)
+	if (TestSetting.get('isSummary') === false) {
+		Testlogger(result)
+	}
 
 	return result
 }

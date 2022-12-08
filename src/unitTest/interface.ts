@@ -1,12 +1,14 @@
 import { stringify } from 'abandonjs'
 import type { IUnitTest } from './type'
+import type { CaseUnit } from '../type'
+import { run, buildCases, debug } from './run'
 
-export class UnitTestInterface implements IUnitTest {
+export class _UnitTest implements IUnitTest {
 
 	name: string
 	func: any
 
-	cases: { params: any[], tobe: any }[] = []
+	cases: CaseUnit[] = []
 
 	defaultValue: any
 	params: any[] = []
@@ -19,19 +21,36 @@ export class UnitTestInterface implements IUnitTest {
 
 	paramSection: number[] = []
 
+	constructor(func: any, name: string) {
+		this.func = func
+		this.name = name
+		this.run = run
+		this.buildCases = buildCases
+		this.debug = debug
+	}
+
+	log(...keys: (keyof _UnitTest)[]) {
+		keys.forEach(item => {
+			if (this[item]) {
+				console.log(this[item])
+			}
+		})
+		return this
+	}
+
 	addParam(...params: any[]) {
 		this.params = this.params.concat(params)
 		this.paramCur += params.length
 		this.paramSection.push(params.length)
 		return this
 	}
-	addParamMap(...params: any[][]) {
+	// addParamMap(...params: any[][]) {
+	addParamMap(...params: any[]) {
 		params.forEach((value: any[], index: number) => {
 			this.paramMaps.set(String(this.paramCur + index + 1), value)
 		})
 		this.paramCur += params.length
 		this.paramSection.push(-params.length)
-
 		return this
 	}
 
@@ -39,6 +58,7 @@ export class UnitTestInterface implements IUnitTest {
 		this.defaultValue = value
 		return this
 	}
+
 	setIndexValues(record: Record<string, any>) {
 		for (const key in record)
 			this.indexValues.set(key, record[key])
