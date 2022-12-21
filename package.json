@@ -1,6 +1,6 @@
 {
   "name": "unit-testing-js",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "测试",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -28,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:guanruihua/unit-testing-js.git"
+    "url": "git@github.com:abandonjs/unit-testing-js.git"
   },
   "bugs": {
-    "url": "https://github.com/guanruihua/unit-testing-js/issues"
+    "url": "https://github.com/abandonjs/unit-testing-js/issues"
   },
   "keywords": [
     "test",
@@ -54,7 +54,8 @@
     "@types/node": "^16.11.21",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "abandonjs": "2.3.2",
+    "abandonjs": "^2.4.1",
+    "check-it-type": "^0.1.7",
     "commitlint": "^17.3.0",
     "eslint": "^8.7.0",
     "fakingjs": "^0.1.1",

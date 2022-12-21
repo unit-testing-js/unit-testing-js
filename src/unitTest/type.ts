@@ -22,5 +22,4 @@ export interface IUnitTest {
 	setIndexValues: (record: Record<string, any>) => this
 
 	run: () => Promise<RunResult>
-	debug: () => Promise<void>
 }

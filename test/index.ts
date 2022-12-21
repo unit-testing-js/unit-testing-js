@@ -9,5 +9,6 @@ loadModule(async () => {
 	import('./demo/01')
 	import('./demo/02')
 	import('./demo/03')
+	import('./demo/#22')
 	import('./demo/md')
 })

@@ -3,7 +3,7 @@ import { _UnitTest } from './interface'
 
 function getFunctionName(func: any) {
 	if (type(func) !== 'Function') return 'Undefined'
-	const functionReg = /function[\s|\*]([0-9a-zA-Z]+)/
+	const functionReg = /function[\s]([0-9a-zA-Z]+)/
 	const matchArray = functionReg.exec(stringify(func)) || []
 
 	if (matchArray.length > 1) {
