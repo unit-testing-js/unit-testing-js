@@ -28,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:guanruihua/unit-testing-js.git"
+    "url": "git@github.com:abandonjs/unit-testing-js.git"
   },
   "bugs": {
-    "url": "https://github.com/guanruihua/unit-testing-js/issues"
+    "url": "https://github.com/abandonjs/unit-testing-js/issues"
   },
   "keywords": [
     "test",
