@@ -1,7 +1,7 @@
 import { stringify } from 'abandonjs'
 import type { IUnitTest } from './type'
 import type { CaseUnit } from '../type'
-import { run, buildCases, debug } from './run'
+import { run, buildCases } from './run'
 
 export class _UnitTest implements IUnitTest {
 
@@ -26,7 +26,6 @@ export class _UnitTest implements IUnitTest {
 		this.name = name
 		this.run = run
 		this.buildCases = buildCases
-		this.debug = debug
 	}
 
 	log(...keys: (keyof _UnitTest)[]) {
@@ -108,9 +107,5 @@ export class _UnitTest implements IUnitTest {
 			ErrorQue: [],
 			totalRunTime: 0
 		}
-	}
-	async debug() {
-		console.warn('debug Method not implemented');
-		return
 	}
 }

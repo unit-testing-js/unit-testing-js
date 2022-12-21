@@ -1,6 +1,8 @@
+import { stringify } from 'abandonjs'
 import { useRunTime } from './useRunTime'
 import type { Func, CaseUnit } from "../type"
 import { isEquals } from '../utils'
+import { parse } from '../utils/parse'
 
 export async function useRun(
 	name: string, func: Func,
@@ -37,6 +39,10 @@ export async function useRun(
 		if (!unit.name) {
 			unit.name = name + ':' + i
 		}
+
+		unit.paramsString = parse(params, true)
+		unit.paramString = parse(param)
+
 		const { result, runTime = -1 } = await useRunTime(
 			funcUnit || func,
 			...((Array.isArray(params)) ? params : [params || param])
@@ -67,7 +73,7 @@ export async function useRun(
 		/**
 		 * 超时 warning
 		 */
-		if (runTime > timeout ) {
+		if (runTime > timeout) {
 			unit.run.error = 'Time out'
 			WarnningQue.push(unit)
 			after && (await after(unit))
@@ -96,6 +102,7 @@ export async function useRun(
 		}
 
 		unit.run.error = 'Error'
+
 		ErrorQue.push(unit)
 
 	}

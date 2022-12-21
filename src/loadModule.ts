@@ -1,5 +1,6 @@
-import { TestSetting, _TestResultMap } from '..';
-import { TestModuleLogger, Testlogger } from './Testlogger'
+import { TestSetting, _TestResultMap } from './test'
+import { TestModuleLogger } from './utils/TestModuleLogger'
+import { Testlogger } from './utils/Testlogger'
 
 async function handleResult(timeout = 300) {
 	setTimeout(() => {
