@@ -90,7 +90,7 @@ export class _UnitTest implements IUnitTest {
 
 		return defaultValue
 	}
-	addCases(...cases: { params: any[], tobe: any }[]) {
+	addCases(...cases: CaseUnit[]) {
 		this.cases = this.cases.concat(cases)
 		return this
 	}
