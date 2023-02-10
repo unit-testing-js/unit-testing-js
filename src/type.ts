@@ -15,6 +15,10 @@ export type CaseUnit = {
 	 */
 	name?: string
 	/**
+	 * 测试用例的组名
+	 */
+	groupName?: string
+	/**
 	 * 测试用例参数, 单个
 	 */
 	param?: any

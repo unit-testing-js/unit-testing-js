@@ -1,4 +1,3 @@
-import { test } from '../test'
 
 function toParam(arg: any[], map: any[], sect: number[]) {
 	let result = []
@@ -59,10 +58,4 @@ export function buildCases() {
 	}
 
 	return this
-}
-
-
-export async function run() {
-	const { name, func, cases } = this
-	return test(name, func, ...cases)
 }
