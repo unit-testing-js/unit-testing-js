@@ -1,6 +1,6 @@
 {
   "name": "unit-testing-js",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "测试 工具包 ",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
