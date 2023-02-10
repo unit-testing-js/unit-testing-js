@@ -10,7 +10,8 @@ specifiers:
   '@types/node': ^16.11.21
   '@typescript-eslint/eslint-plugin': ^5.10.1
   '@typescript-eslint/parser': ^5.10.1
-  abandonjs: 2.3.2
+  abandonjs: ^2.5.3
+  check-it-type: ^0.1.8
   commitlint: ^17.3.0
   eslint: ^8.7.0
   fakingjs: ^0.1.1
@@ -20,7 +21,6 @@ specifiers:
   prettier: ^2.5.1
   reflect-metadata: ^0.1.13
   rh-color: 1.0.4
-  rh-mock: ^1.3.4
   rimraf: ^3.0.2
   rollup: ^2.66.1
   rollup-plugin-babel: ^4.4.0
@@ -43,7 +43,8 @@ devDependencies:
   '@types/node': 16.11.21
   '@typescript-eslint/eslint-plugin': 5.10.1_b5cc623aheccsbq5lwnwxsvluy
   '@typescript-eslint/parser': 5.10.1_j2dpqr3duszxwhwhg5puk5zm6e
-  abandonjs: 2.3.2
+  abandonjs: 2.5.3
+  check-it-type: 0.1.8
   commitlint: 17.3.0
   eslint: 8.7.0
   fakingjs: 0.1.1
@@ -53,7 +54,6 @@ devDependencies:
   prettier: 2.5.1
   reflect-metadata: 0.1.13
   rh-color: 1.0.4
-  rh-mock: 1.3.4
   rimraf: 3.0.2
   rollup: 2.66.1
   rollup-plugin-babel: 4.4.0_tgltdgworpfcpxstfipcddtyem
@@ -1786,8 +1786,8 @@ packages:
       through: 2.3.8
     dev: true
 
-  /abandonjs/2.3.2:
-    resolution: {integrity: sha512-TqFGzoWWfQaU6V7YJ113oT1S4DELmo1HsVegrHU18snFvYSGPE0n+jPwja1In8bb8Y/lPbdhMhyBAB4fugahow==}
+  /abandonjs/2.5.3:
+    resolution: {integrity: sha512-DDALa6quY75yDQ3Kx/gosTpCpAYeoWCagjyvWmwMUEl1/uZznIauUBAXEdAR4YDEY2SuF5wT8aERzK3NZqd+7Q==}
     engines: {node: '>=16'}
     dev: true
 
@@ -2072,6 +2072,11 @@ packages:
 
   /chardet/0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
+    dev: true
+
+  /check-it-type/0.1.8:
+    resolution: {integrity: sha512-hRTJzaPxQrq4+ottGh6R9wb1L7Eh5R01qMrWQG2piIDEXd8xBUmAvMWr6ddjbulTQI1co2/VIRa8UT954Sxm6A==}
+    engines: {node: '>=16'}
     dev: true
 
   /chokidar/3.5.3:
@@ -3905,10 +3910,6 @@ packages:
     dependencies:
       reflect-metadata: 0.1.13
       rh-ts-methods: 0.0.2
-    dev: true
-
-  /rh-mock/1.3.4:
-    resolution: {integrity: sha512-Nllz+X+swH29yKReJKVf2oqPHjURD2gRVOej6jzkkigJ07myBeSoHl/biO2X8x7mi1KqODGlP/UsHMLkkW+WOg==}
     dev: true
 
   /rh-ts-methods/0.0.2:

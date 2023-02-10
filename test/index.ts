@@ -11,4 +11,5 @@ loadModule(async () => {
 	import('./demo/03')
 	import('./demo/#22')
 	import('./demo/md')
+	import('./demo/runByName')
 })
