@@ -1,7 +1,9 @@
-import { stringify } from 'abandonjs'
+import { isArray, stringify } from 'abandonjs'
 import type { IUnitTest } from './type'
 import type { CaseUnit } from '../type'
-import { run, buildCases } from './run'
+import { buildCases } from './run'
+import { test } from '../test'
+
 
 export class _UnitTest implements IUnitTest {
 
@@ -24,7 +26,6 @@ export class _UnitTest implements IUnitTest {
 	constructor(func: any, name: string) {
 		this.func = func
 		this.name = name
-		this.run = run
 		this.buildCases = buildCases
 	}
 
@@ -43,7 +44,7 @@ export class _UnitTest implements IUnitTest {
 		this.paramSection.push(params.length)
 		return this
 	}
-	// addParamMap(...params: any[][]) {
+
 	addParamMap(...params: any[]) {
 		params.forEach((value: any[], index: number) => {
 			this.paramMaps.set(String(this.paramCur + index + 1), value)
@@ -90,7 +91,7 @@ export class _UnitTest implements IUnitTest {
 
 		return defaultValue
 	}
-	addCases(...cases: { params: any[], tobe: any }[]) {
+	addCases(...cases: CaseUnit[]) {
 		this.cases = this.cases.concat(cases)
 		return this
 	}
@@ -98,14 +99,24 @@ export class _UnitTest implements IUnitTest {
 		console.warn('buildCases Method not implemented');
 		return this
 	}
-	async run() {
-		console.warn('run Method not implemented');
-		return {
-			name: 'name',
-			SuccessQue: [],
-			WarnningQue: [],
-			ErrorQue: [],
-			totalRunTime: 0
+	/**
+	 * @description 运行测试用例
+	 * @param caseOrGroupName {string|string[]}
+	 * @returns 
+	 */
+	async run(caseOrGroupName?: string | string[]) {
+		const { name, func, cases = [] } = this
+		if (caseOrGroupName) {
+			const newCases: CaseUnit[] = []
+			const list = isArray(caseOrGroupName) ? caseOrGroupName : [caseOrGroupName]
+			cases.forEach((item: CaseUnit) => {
+				const { name, groupName } = item
+				if (list.includes(name) || list.includes(groupName)) {
+					newCases.push(item)
+				}
+			})
+			return test(name, func, ...newCases)
 		}
+		return test(name, func, ...cases)
 	}
 }
