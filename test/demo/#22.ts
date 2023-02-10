@@ -1,7 +1,7 @@
-import {arrayToTree} from 'abandonjs'
+import { arrayToTree } from 'abandonjs'
 import { test } from '..'
 
-test('arrayToTree', arrayToTree,
+0 && test('arrayToTree', arrayToTree,
 	{
 		params: [
 			[

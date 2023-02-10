@@ -4,7 +4,6 @@ import type { CaseUnit } from '../type'
 import { buildCases } from './run'
 import { test } from '../test'
 
-
 export class _UnitTest implements IUnitTest {
 
 	name: string
