@@ -1,6 +1,6 @@
 {
   "name": "unit-testing-js",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "测试 工具包 ",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -54,8 +54,8 @@
     "@types/node": "^16.11.21",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "abandonjs": "^2.5.3",
-    "check-it-type": "^0.1.8",
+    "abandonjs": "^2.5.4",
+    "check-it-type": "^0.3.0",
     "commitlint": "^17.3.0",
     "eslint": "^8.7.0",
     "fakingjs": "^0.1.1",
