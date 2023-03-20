@@ -1,4 +1,3 @@
-import { stringify } from 'abandonjs'
 import { useRunTime } from './useRunTime'
 import type { Func, CaseUnit } from "../type"
 import { isEquals } from '../utils'

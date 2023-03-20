@@ -1,7 +1,9 @@
 
-import type { CaseUnit, Func } from './type'
+import type { CaseUnit, Func, TestRunResult } from './type'
 import { Testlogger } from './utils/Testlogger'
 import { useRun } from './hook/useRun'
+import { isFunction, isString, isObject } from 'check-it-type'
+import { toBe } from './eg'
 
 export const TestSetting = new Map<string, number | string | boolean>([
 	// 汇总结果集
@@ -33,7 +35,15 @@ export const TestResultMap = {
  * @param func Function 待测试的方法
  * @param ...cases:CaseUnit<Param,Tobe> 测试用用例
  */
-export async function test(name: string, func: Func, ...cases: CaseUnit[]) {
+export async function test(nameOrFunc: string | Func, funcOrCase?: CaseUnit | Func, ...cases: CaseUnit[]): Promise<TestRunResult> {
+
+	let name = ''
+	let func: Func = toBe
+
+	if (isString(nameOrFunc)) name = nameOrFunc
+
+	if (isFunction(funcOrCase)) func = funcOrCase
+	if (isObject(funcOrCase)) cases.unshift(funcOrCase as CaseUnit)
 
 	const result = await useRun(name, func, ...cases)
 
