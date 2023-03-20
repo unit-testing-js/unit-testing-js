@@ -74,3 +74,12 @@ export type CaseUnit = {
 	}
 	[key: string]: any
 }
+
+
+export interface TestRunResult {
+	name: string
+	SuccessQue: any[]
+	WarnningQue: any[]
+	ErrorQue: any[]
+	totalRunTime: number
+}

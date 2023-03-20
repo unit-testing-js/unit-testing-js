@@ -5,6 +5,7 @@ import { loadModule, TestSetting } from '../src'
 TestSetting.set('isSummary', true)
 
 loadModule(async () => {
+	import('./testParam')
 	import('./demo/unitTest')
 	import('./demo/01')
 	import('./demo/02')
