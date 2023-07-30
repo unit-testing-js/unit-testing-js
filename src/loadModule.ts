@@ -13,13 +13,13 @@ async function handleResult(timeout = 300) {
 		let totalRunTime = 0
 
 		_TestResultMap.forEach(item => {
-			const { SuccessQue = [], ErrorQue = [], WarnningQue = [] } = item
+			const { SuccessQue = [], ErrorQue = [], WarningQue = [] } = item
 			let flag = true
 			successCaseNum += SuccessQue.length
 			totalRunTime += item.totalRunTime || 0
 
-			if (WarnningQue.length > 0) {
-				warningCaseNum += WarnningQue.length
+			if (WarningQue.length > 0) {
+				warningCaseNum += WarningQue.length
 				warningModuleNum++
 				flag = false
 				Testlogger(item);

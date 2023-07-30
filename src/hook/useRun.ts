@@ -2,6 +2,7 @@ import { useRunTime } from './useRunTime'
 import type { Func, CaseUnit } from "../type"
 import { isEquals } from '../utils'
 import { parse } from '../utils/parse'
+import { isEmpty } from 'asura-eye'
 
 export async function useRun(
 	name: string, func: Func,
@@ -9,7 +10,7 @@ export async function useRun(
 ) {
 
 	const SuccessQue = []
-	const WarnningQue = []
+	const WarningQue = []
 	const ErrorQue = []
 	let totalRunTime = 0
 
@@ -35,7 +36,7 @@ export async function useRun(
 		} = unit
 
 		// 设置 测试用例 名
-		if (!unit.name) {
+		if (isEmpty(unit.name)) {
 			unit.name = name + ':' + i
 		}
 
@@ -74,7 +75,7 @@ export async function useRun(
 		 */
 		if (runTime > timeout) {
 			unit.run.error = 'Time out'
-			WarnningQue.push(unit)
+			WarningQue.push(unit)
 			after && (await after(unit))
 			continue;
 		}
@@ -95,7 +96,7 @@ export async function useRun(
 		 */
 		if (isEquals(result, warningTobe, warningTobes, type)) {
 			unit.run.error = 'Warring'
-			WarnningQue.push(unit)
+			WarningQue.push(unit)
 			after && (await after(unit))
 			continue;
 		}
@@ -110,7 +111,7 @@ export async function useRun(
 	return {
 		name,
 		SuccessQue,
-		WarnningQue,
+		WarningQue,
 		ErrorQue,
 		totalRunTime
 	}
