@@ -1,4 +1,4 @@
-import { isArray, isObject } from 'check-it-type'
+import { isArray, isObject } from 'asura-eye'
 import type { CaseUnit } from '../type'
 
 export function buildTrueCase(...cases: any[]): CaseUnit[] {

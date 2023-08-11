@@ -2,7 +2,7 @@
 interface RunResult {
 	name: string
 	SuccessQue: any[]
-	WarnningQue: any[]
+	WarningQue: any[]
 	ErrorQue: any[]
 	totalRunTime: number
 }

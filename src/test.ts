@@ -1,9 +1,9 @@
 
 import type { CaseUnit, Func, TestRunResult } from './type'
-import { Testlogger } from './utils/Testlogger'
 import { useRun } from './hook/useRun'
-import { isFunction, isString, isObject } from 'check-it-type'
+import { isFunction, isString, isObject } from 'asura-eye'
 import { toBe } from './eg'
+import { getFunctionName, Testlogger } from './utils'
 
 export const TestSetting = new Map<string, number | string | boolean>([
 	// 汇总结果集
@@ -37,13 +37,15 @@ export const TestResultMap = {
  */
 export async function test(nameOrFunc: string | Func, funcOrCase?: CaseUnit | Func, ...cases: CaseUnit[]): Promise<TestRunResult> {
 
-	let name = ''
+	const name = isString(nameOrFunc) ? nameOrFunc : getFunctionName(nameOrFunc)
 	let func: Func = toBe
-
-	if (isString(nameOrFunc)) name = nameOrFunc
-
-	if (isFunction(funcOrCase)) func = funcOrCase
-	if (isObject(funcOrCase)) cases.unshift(funcOrCase as CaseUnit)
+	if (isFunction(nameOrFunc)) {
+		func = nameOrFunc
+		cases.unshift(funcOrCase as CaseUnit)
+	} else if (isFunction(funcOrCase)) {
+		func = funcOrCase
+	} else if (isObject(funcOrCase))
+		cases.unshift(funcOrCase as CaseUnit)
 
 	const result = await useRun(name, func, ...cases)
 

@@ -7,20 +7,20 @@ import { logNotSuccess } from './logNotSuccess'
 interface TestLoggerParam {
 	name: string,
 	SuccessQue: CaseUnit[],
-	WarnningQue: CaseUnit[],
+	WarningQue: CaseUnit[],
 	ErrorQue: CaseUnit[],
 	totalRunTime: number
 }
 
 export function Testlogger(params: TestLoggerParam) {
 
-	const { name = '', SuccessQue = [], WarnningQue = [], ErrorQue = [], totalRunTime = 0 } = params
+	const { name = '', SuccessQue = [], WarningQue = [], ErrorQue = [], totalRunTime = 0 } = params
 
 	let tagColor: Styles = 'Cyan'
 	let tagFlag = 'Success'
-	if (WarnningQue.length > 0) {
+	if (WarningQue.length > 0) {
 		tagColor = 'Yellow'
-		tagFlag = 'Warnning'
+		tagFlag = 'Warning'
 	}
 	if (ErrorQue.length > 0) {
 		tagColor = 'Red'
@@ -31,11 +31,11 @@ export function Testlogger(params: TestLoggerParam) {
 		color(icon[tagFlag], tagColor) + ' ' +
 		color(`${name}: `, tagColor, 'Bright') +
 		color(`${SuccessQue.length} `, 'Green') +
-		(WarnningQue.length ? color(`${WarnningQue.length} `, 'Yellow') : '') + ' ' +
+		(WarningQue.length ? color(`${WarningQue.length} `, 'Yellow') : '') + ' ' +
 		(ErrorQue.length ? color(`${ErrorQue.length}`, 'Red') : '') + ' ' +
 		(tagFlag !== 'Success' ? color(`${totalRunTime || -1}`, 'Grey') : '')
 	)
-	logNotSuccess(WarnningQue, tagColor, tagFlag)
+	logNotSuccess(WarningQue, tagColor, tagFlag)
 	logNotSuccess(ErrorQue, tagColor, tagFlag)
 
 }

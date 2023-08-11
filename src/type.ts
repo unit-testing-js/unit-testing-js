@@ -79,7 +79,7 @@ export type CaseUnit = {
 export interface TestRunResult {
 	name: string
 	SuccessQue: any[]
-	WarnningQue: any[]
+	WarningQue: any[]
 	ErrorQue: any[]
 	totalRunTime: number
 }

@@ -18,7 +18,7 @@ export function TestModuleLogger(params: Record<string, any>) {
 	let tagFlag = 'Success'
 	if (warningCaseNum > 0) {
 		tagColor = 'Yellow'
-		tagFlag = 'Warnning'
+		tagFlag = 'Warning'
 	}
 	if (errorCaseNum > 0) {
 		tagColor = 'Red'

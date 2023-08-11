@@ -1,5 +1,5 @@
 export const icon = {
 	Success: '\u2714',
-	Wanning: '\u0021',
+	Warning: '\u0394',
 	Error: '\u2718'
 }
